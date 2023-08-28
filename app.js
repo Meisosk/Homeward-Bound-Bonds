@@ -5,6 +5,7 @@ const session = require("express-session");
 const helmet = require("helmet");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
+const multer = require("multer")
 // const {} = require("./models");
 
 const app = express();
