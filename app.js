@@ -7,15 +7,19 @@ const app = express()
 const port = 3000
 
 app.engine('html', es6);
-app.set('views', 'views');
 app.set('view engine', 'html');
+app.use(express.static('public'))
 
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
-    res.send("hello world")
+    res.render("desk")
+})
+
+app.get('/example', (req, res) => {
+    res.render("example")
 })
 
 app.listen(port, () => {
