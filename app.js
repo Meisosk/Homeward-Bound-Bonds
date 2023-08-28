@@ -19,26 +19,26 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.render("desk");
+  res.render("home");
 });
 
 app.get("/signup", (req, res) => {
-  res.render("example");
+  res.render("sign-up");
 });
 
 app.get("/signin", (req, res) => {
   res.render("sign-in");
 });
 
-app.get("/petprofile", (req, res) => {
+app.get("/profile/pet", (req, res) => {
   res.render("pet-profile");
 });
 
 app.get("/contact", (req, res) => {
-  res.render("exampleContact");
+  res.render("contact");
 });
 
-app.get("/profile", (req, res) => {
+app.get("/profile/user", (req, res) => {
   res.render("profile");
 });
 
