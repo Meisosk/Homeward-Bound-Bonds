@@ -7,18 +7,28 @@ body {
 /* Style for the navigation bar */
 .navbar {
     display: flex;
+    flex: 1, 2;
     justify-content: space-between;
     align-items: center;
     background-color: #C8AB83;
     color: black;
     padding: 10px 20px;
     height: 60px;
+    margin-bottom: auto;
 }
 
 .navbar a {
     color: black;
     text-decoration: none;
-    margin: 0 60px;
+    padding: 10px;
+    border-radius: 16px;
+}
+
+.navbar a:hover {
+    background: linear-gradient(180deg, #6DB2BA 69.27%, #EEC584 99.99%, #7078c9 100%);
+    color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+   
 }
 
 /* Style for the search area */
@@ -123,4 +133,10 @@ body {
 
 .card:nth-child(odd) .card-button {
     background-color: #6DB2BA;
+}
+
+#logo {
+    width: 15%;
+    border-radius: 50%;
+    margin-top: 80px;
 }
