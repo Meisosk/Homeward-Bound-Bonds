@@ -6,7 +6,7 @@ const helmet = require("helmet");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 const multer = require("multer")
-const { Pets } = require("./models");
+const { Users, Pets } = require("./models");
 
 const app = express();
 const port = 3000;
@@ -44,6 +44,24 @@ app.post("/pet-profile", async (req, res) => {
 app.get("/signup", (req, res) => {
   res.render("sign-up");
 });
+
+app.post('/user/new', async (req, res) => {
+    const { name, email, password, foster } = req.body;
+    try {
+        const newUser = await Users.create({
+        name, 
+        email, 
+        password, 
+        foster, 
+        });
+
+        res.redirect('/');
+    } catch (error) {
+        console.error('Error creating new post:', error);
+        res.status(500).send('An error occurred while creating a new post.');
+    }
+});
+
 
 app.get("/signin", (req, res) => {
   res.render("sign-in");
