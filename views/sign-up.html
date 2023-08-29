@@ -4,32 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/example.css">
+    <link rel="stylesheet" href="/css/desk.css">
     <title>User Login Page</title>
 </head>
 <body>
-    
-    <header>
-        <nav class="navbar">
-            <ul class="nav-list">
-                <li class="nav-item"><a href="#">Adopt</a></li>
-                <li class="nav-item"><a href="#">Rehome</a></li>
-                <li class="nav-item"><a href="#">Recently Adopted</a></li>
-                <li class="nav-item"><a href="#">FAQ</a></li>
-            </ul>
-        </nav>
+    <nav class="navbar">
+        <div class="navbar-left"><img id="logo" src="images/petLogo.png"></div>
+        <div class="navbar-center">
+            <a href="#">Adopt</a>
+            <a href="#">Rehome</a>
+            <a href="#">Recently Adopted</a>
+            <a href="#">PROFILE</a>
+        </div>
+    </nav>
     </header>
     <a href="#" class="back-button">&#8592; Back</a>
     <div class="container">
         <form method="POST" action="/user/new">
-            <label for="fullName">Full Name</label>
-            <input type="text" id="fullName" name="name" required>
+            <label for="fullName"></label>
+            <input type="text" id="fullName" name="name" required placeholder="Full Name">
 
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" required>
+            <label for="email"></label>
+            <input type="email" id="email" name="email" required placeholder="Email Address">
 
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
-
+            <label for="password"></label>
+            <input type="password" id="password" name="password" required placeholder="Password">
             <div class="selection-buttons">
                 <input type="radio" id="adopter" name="foster" value="false" required>
                 <label class="selection-label" for="adopter">Adopter</label>
@@ -37,6 +36,7 @@
                 <input type="radio" id="adoptee" name="foster" value="true" required>
                 <label class="selection-label" for="adoptee">Adoptee</label>
             </div>
+            <p class = "sign">Already have an account? <a href="/sign-in">Sign in!</a></p>
             <button class="submit-button" type="submit">Create Account</button>
         </form>
     </div>

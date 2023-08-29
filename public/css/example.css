@@ -15,10 +15,11 @@ header {
 
 
 .container {
-    max-width: 400px;
+    max-width: 60%;
     margin: 0 auto;
     padding: 20px;
-    background-color: white;
+    padding-top: 150px;
+    background-color:none;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     margin-top: 50px;
@@ -37,7 +38,7 @@ form input[type="text"],
 form input[type="email"],
 form input[type="password"] {
     padding: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 1.5rem;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -45,7 +46,8 @@ form input[type="password"] {
 .selection-buttons {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 15px;
+    margin-bottom: .5rem;
+    gap: 10%;
 }
 
 input[type="radio"] {
@@ -58,26 +60,33 @@ label.selection-label {
     justify-content: center;
     width: 48%;
     padding: 10px;
-    background-color: #ddd;
+    background-color: #55868C;
     border: 1px solid #ccc;
     border-radius: 5px;
     cursor: pointer;
 }
 
 input[type="radio"]:checked + label.selection-label {
-    background-color: #5465FF;
+    background: linear-gradient(to right, #55868c, #3c9f8f, #57b475, #98c248, #ebc412);
     color: white;
-    border-color: #5465FF;
+    border: linear-gradient(to right, #55868c, #3c9f8f, #57b475, #98c248, #ebc412);
+}
+
+
+.sign {
+    align-self: center;
 }
 
 .submit-button {
-    background-color: #9BB1FF;
+    max-width: 60%;
+    background-color: #55868C;
     color: white;
-    padding: 10px 20px;
-    border: none;
+    padding: 10px 100px;
     border-radius: 5px;
-    cursor: pointer;
+    align-self: center;
 }
+
+
 
 .submit-button:hover {
     background-color: #5465FF;
