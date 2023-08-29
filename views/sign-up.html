@@ -20,9 +20,9 @@
     </header>
     <a href="#" class="back-button">&#8592; Back</a>
     <div class="container">
-        <form>
+        <form method="POST" action="/user/new">
             <label for="fullName">Full Name</label>
-            <input type="text" id="fullName" name="fullName" required>
+            <input type="text" id="fullName" name="name" required>
 
             <label for="email">Email Address</label>
             <input type="email" id="email" name="email" required>
@@ -31,13 +31,12 @@
             <input type="password" id="password" name="password" required>
 
             <div class="selection-buttons">
-                <input type="radio" id="adopter" name="userType" value="adopter" required>
+                <input type="radio" id="adopter" name="foster" value="false" required>
                 <label class="selection-label" for="adopter">Adopter</label>
-
-                <input type="radio" id="adoptee" name="userType" value="adoptee" required>
+            
+                <input type="radio" id="adoptee" name="foster" value="true" required>
                 <label class="selection-label" for="adoptee">Adoptee</label>
             </div>
-
             <button class="submit-button" type="submit">Create Account</button>
         </form>
     </div>
