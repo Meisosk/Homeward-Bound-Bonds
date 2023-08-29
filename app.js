@@ -6,7 +6,7 @@ const helmet = require("helmet");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 const multer = require("multer")
-// const {} = require("./models");
+const { Pets } = require("./models");
 
 const app = express();
 const port = 3000;
@@ -22,6 +22,24 @@ app.use(express.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res.render("home");
 });
+
+app.post("/pet-profile", async (req, res) => {
+    const { name, pics, age, gender, weight, type, bio, isAdopted, ownerId } = req.body
+    const newPet = await Pets.create({
+        name, 
+        pics, 
+        age, 
+        gender, 
+        weight, 
+        type, 
+        bio, 
+        isAdopted, 
+        ownerId
+    })
+     res.status(201).json(newPet); 
+});
+
+
 
 app.get("/signup", (req, res) => {
   res.render("sign-up");
@@ -50,6 +68,8 @@ app.get("/rehome", (req, res) => {
 app.get("/adopted", (req, res) => {
   res.render("recently-adopted");
 });
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening on http://localhost:${port}`);
