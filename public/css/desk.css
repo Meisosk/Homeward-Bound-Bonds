@@ -44,16 +44,15 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    align-items: flex-start;
     padding: 40px;
-    gap: 40px;
 }
 
 .card {
     display: flex;
-    flex-basis: 30%;
+    flex-basis: calc(30% - 20px);
     border: 1px solid #ddd;
     margin-bottom: 20px;
-    box-sizing: border-box;
     border-radius: 16px;
     overflow: hidden;
     background-color: white;
@@ -62,11 +61,14 @@ body {
 
 .card img {
     max-width: 40%;
+    height: auto;
     border-radius: 16px;
     flex: 1;
     margin: 20px;
+    object-fit: cover;
 
 }
+
 
 .card img:hover {
     transform: scale(1.1); 
