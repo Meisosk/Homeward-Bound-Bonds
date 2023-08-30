@@ -1,0 +1,13 @@
+.profile {
+    margin-top: 40px;
+}
+
+form input[type="text"],
+form input[type="number"],
+textarea {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: transparent;
+}
+
