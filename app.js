@@ -17,11 +17,24 @@ app.engine("html", es6);
 app.set("views", "views");
 app.set("view engine", "html");
 app.use(express.static("public"));
-// app.use(express.static(path.join(__dirname, 'public')));
+
+
+const SequelizeStore = 
+      require("connect-session-sequelize")(session.Store)
+const store = new SequelizeStore({ db: Users.sequelize})
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('tiny'))
+
+
+app.use(session({
+  secret: "this is secret",
+  resave: false,
+  saveUninitialized: false,
+  store: store
+}))
+store.sync()
 
 app.get("/", (req, res) => {
   res.render("home");
@@ -106,7 +119,7 @@ app.post("/user/signin", async (req, res) => {
       },
     });
     if (user) {
-      console.log("exsists");
+      req.session.user = user
       res.redirect("/profile/user/" + user.id)
     } else {
         console.log("incorrect login");
@@ -124,13 +137,24 @@ app.get("/contact", (req, res) => {
   res.render("contact");
 });
 
-app.get("/profile/user/:id", async (req, res) => {
+       
+function checkAuth(req, res, next) {
+  if(req.session.user){
+    next()
+  } else {
+    res.redirect("/")
+  }
+}
+
+
+app.get("/profile/user/:id", checkAuth, async (req, res) => {
   const { id } = req.params;
   const user = await Users.findOne({
     where: {
       id
     }
   });
+  
 
   res.render("profile", { user });
 });
@@ -144,6 +168,9 @@ app.delete('/profile/user/:id', async (req, res) => {
   }); 
   res.json(deletedUser);
 });
+
+app.post("/logout", (req, res) => {
+  req.session.destroy(res.redirect("/"))})
 
 app.get("/rehome", (req, res) => {
   res.render("re-home");

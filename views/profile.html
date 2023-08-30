@@ -27,7 +27,9 @@
     <div class="bar">
         Delete Account
     </div>
-    <button class = "btn btn-danger"> Log Out </button>
+    <form action="/logout" method="POST">
+        <button class= "btn btn-danger">logout</button>
+    </form>
     <form id="deleteForm" method="POST">
         <button class="btn btn-danger" type="button" onclick="deleteProfile()">Delete Profile</button>
       </form>
