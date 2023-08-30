@@ -141,15 +141,20 @@ app.get("/contact", (req, res) => {
 });
 
 function checkAuth(req, res, next) {
-  
+  console.log("auth")
   if(req.session.user){
+    console.log("if 1")
     const sessId = req.session.user.id
     const paramId = parseInt(req.params.id )   
     if(sessId == paramId){
+      console.log("if 2")
       next()
     } else {
+      console.log("else")
       res.redirect("/")
     }
+  } else{
+    res.redirect("/")
   }
 }
 
