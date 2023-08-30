@@ -97,6 +97,25 @@ app.get("/signin", (req, res) => {
   res.render("sign-in");
 });
 
+app.post("/user/signin", async (req, res) => {
+  const { email, password} = req.body;
+    const user = await Users.findOne({
+      where: {
+        email,
+        password
+      },
+    });
+    if (user) {
+      console.log("exsists");
+      res.redirect("/profile/user/" + user.id)
+    } else {
+        console.log("incorrect login");
+        res.redirect("/signin");
+    }
+          
+      
+  });
+
 app.get("/profile/pet", (req, res) => {
   res.render("pet-profile");
 });
@@ -105,8 +124,15 @@ app.get("/contact", (req, res) => {
   res.render("contact");
 });
 
-app.get("/profile/user/:id", (req, res) => {
-  res.render("profile");
+app.get("/profile/user/:id", async (req, res) => {
+  const { id } = req.params;
+  const user = await Users.findOne({
+    where: {
+      id
+    }
+  });
+
+  res.render("profile", { user });
 });
 
 app.delete('/profile/user/:id', async (req, res) => {
