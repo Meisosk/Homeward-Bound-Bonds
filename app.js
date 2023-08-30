@@ -37,6 +37,9 @@ app.use(session({
 store.sync()
 
 app.get("/", (req, res) => {
+  if (req.session.user) {
+    return res.redirect("/profile/user/" + req.session.user.id);
+  }
   res.render("home");
 });
 
@@ -99,7 +102,7 @@ app.post("/user/new", async (req, res) => {
       foster,
     });
 
-    res.redirect("/");
+    res.redirect("/signin");
   } catch (error) {
     console.error("Error creating new post:", error);
     res.status(500).send("An error occurred while creating a new post.");
@@ -119,7 +122,7 @@ app.post("/user/signin", async (req, res) => {
       },
     });
     if (user) {
-      req.session.user = user
+       req.session.user = user
       res.redirect("/profile/user/" + user.id)
     } else {
         console.log("incorrect login");
@@ -137,12 +140,16 @@ app.get("/contact", (req, res) => {
   res.render("contact");
 });
 
-       
 function checkAuth(req, res, next) {
+  
   if(req.session.user){
-    next()
-  } else {
-    res.redirect("/")
+    const sessId = req.session.user.id
+    const paramId = parseInt(req.params.id )   
+    if(sessId == paramId){
+      next()
+    } else {
+      res.redirect("/")
+    }
   }
 }
 
@@ -154,10 +161,16 @@ app.get("/profile/user/:id", checkAuth, async (req, res) => {
       id
     }
   });
-  
+  res.render("profile", {
+    user,
+    locals: { 
+      name: user.name,
+      email: user.email
+    
+    },
 
-  res.render("profile", { user });
 });
+})
 
 app.delete('/profile/user/:id', async (req, res) => {
   const { id } = req.params;
@@ -169,8 +182,15 @@ app.delete('/profile/user/:id', async (req, res) => {
   res.json(deletedUser);
 });
 
-app.post("/logout", (req, res) => {
-  req.session.destroy(res.redirect("/"))})
+app.post("/logout", async (req, res) => {
+  try {
+    req.session.destroy();
+    res.redirect("/");
+  } catch (error) {
+    console.error('Error destroying session:', error);
+    res.status(500).send("An error occurred while logging out.");
+  }
+});
 
 app.get("/rehome", (req, res) => {
   res.render("re-home");

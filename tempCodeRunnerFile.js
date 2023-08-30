@@ -1,3 +1,3 @@
-
-app.post("/user/new", async (req, res) => {
-  const { name, email, password, foster } = 
+  // if (req.session.user) {
+  //   return res.redirect("/profile/user/" + req.session.user.id);
+  // }
