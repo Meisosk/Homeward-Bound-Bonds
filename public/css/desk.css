@@ -2,6 +2,7 @@ body {
     background-color: #D9D4CD;
     margin: 0%;
     padding: 0%;
+ 
 }
 
 /* Style for the navigation bar */
@@ -22,6 +23,7 @@ body {
     text-decoration: none;
     padding: 10px;
     border-radius: 16px;
+    font-family: 'Gluten', cursive;
 }
 
 .navbar a:hover {
@@ -47,8 +49,8 @@ body {
 }
 
 .card {
-    flex: 1 1 300px; /* Adjust width as needed */
     display: flex;
+    flex-basis: 30%;
     border: 1px solid #ddd;
     margin-bottom: 20px;
     box-sizing: border-box;
@@ -63,8 +65,14 @@ body {
     border-radius: 16px;
     flex: 1;
     margin: 20px;
+
 }
 
+.card img:hover {
+    transform: scale(1.1); 
+    filter: brightness(1.2); 
+    transition: transform 0.2s, filter 0.2s;
+}
 
 .card-info {
     flex: 1;
@@ -84,6 +92,7 @@ body {
     border-radius: 16px;
     align-items: center;
     margin-left: 40px;
+    font-family: 'Gluten', cursive;
 }
 
 
@@ -103,6 +112,10 @@ body {
     border-radius: 16px;
 }
 
+.card-button:hover {
+    transform: scale(1.05); 
+    transition: background-color 0.2s, transform 0.2s; 
+}
 .info-container {
     display: flex;
     flex-direction: column;
