@@ -1,1 +1,3 @@
-/profile/user/:id
+
+app.post("/user/new", async (req, res) => {
+  const { name, email, password, foster } = 

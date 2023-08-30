@@ -35,18 +35,23 @@
 
 <script>
     function deleteProfile() {
-      const userId = 11
+      const userId =  getUserIdFromUrl()
       
       fetch("/profile/user/" + userId, {
         method: 'DELETE'
       })
       .then(response => response.json())
       .then(data => {
-        console.log(data.message);
-        // Handle success or error as needed, e.g., refresh the page
-        location.reload();
+        window.location.href = '/'
       })
       .catch(error => console.error(error));
     }
+
+    function getUserIdFromUrl() {
+        const path = window.location.pathname;
+        const segments = path.split('/');
+        const userIdSegment = segments[segments.length - 1];
+        return userIdSegment;
+  }
     </script>
 </html>
