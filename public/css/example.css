@@ -41,6 +41,7 @@ form input[type="password"] {
     background-color: transparent;
 }
 
+
 .selection-buttons {
     display: flex;
     justify-content: space-between;
@@ -137,5 +138,12 @@ nav .logo {
 
 .head {
     align-self: flex-start;
-    padding-bottom: 150px;
+    padding-bottom: 40px;
+}
+
+#dog {
+    margin-left: 20px;
+    margin-bottom: 0%;
+    max-width: 30%;
+
 }
