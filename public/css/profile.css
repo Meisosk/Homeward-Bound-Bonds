@@ -1,0 +1,11 @@
+body{
+    margin: 0px;
+}
+
+h1{
+    text-align: center;
+}
+
+.bar{
+    background-color: lightgray;
+}
