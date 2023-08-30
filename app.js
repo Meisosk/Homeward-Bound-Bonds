@@ -105,8 +105,18 @@ app.get("/contact", (req, res) => {
   res.render("contact");
 });
 
-app.get("/profile/user", (req, res) => {
+app.get("/profile/user/:id", (req, res) => {
   res.render("profile");
+});
+
+app.delete('/profile/user/:id', async (req, res) => {
+  const { id } = req.params;
+  const deletedUser = await Users.destroy({
+      where: {
+          id
+      }
+  }); 
+  res.json(deletedUser);
 });
 
 app.get("/rehome", (req, res) => {
