@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/example.css">
+    <link rel="stylesheet" href="/css/desk.css">
+    <title>User Login Page</title>
+</head>
+<body>
+    </header>
+    <div class = "backCont">
+    <a href="/" class="back-button"><i class="fa-solid fa-arrow-left fa-3x"></i></a></div>
+    <div class="container">
+        <div class = "head"><h1>Sign Up</h1></div>
+        <form method="POST" action="/user/new">
+            <label for="fullName"></label>
+            <input type="text" id="fullName" name="name" required placeholder="Full Name">
+
+            <label for="email"></label>
+            <input type="email" id="email" name="email" required placeholder="Email Address">
+
+            <label for="password"></label>
+            <input type="password" id="password" name="password" required placeholder="Password">
+            <div class="selection-buttons">
+                <input type="radio" id="adopter" name="foster" value="false" required>
+                <label class="selection-label" for="adopter">Adopter</label>
+            
+                <input type="radio" id="adoptee" name="foster" value="true" required>
+                <label class="selection-label" for="adoptee">Adoptee</label>
+            </div>
+            <p class = "sign">Already have an account? <a href="/sign-in">Sign in!</a></p>
+            <button class="submit-button" type="submit">CONTINUE</button>
+        </form>
+    </div>
+
+</body>
+<script src="https://kit.fontawesome.com/8cee7d6611.js" crossorigin="anonymous"></script>
+</html>

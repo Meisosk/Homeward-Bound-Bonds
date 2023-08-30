@@ -18,10 +18,7 @@ header {
     max-width: 60%;
     margin: 0 auto;
     padding: 20px;
-    padding-top: 150px;
     background-color:none;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     margin-top: 50px;
 }
 
@@ -39,8 +36,9 @@ form input[type="email"],
 form input[type="password"] {
     padding: 10px;
     margin-bottom: 1.5rem;
-    border: 1px solid #ccc;
+    border: 1px solid black;
     border-radius: 5px;
+    background-color: transparent;
 }
 
 .selection-buttons {
@@ -78,10 +76,10 @@ input[type="radio"]:checked + label.selection-label {
 }
 
 .submit-button {
-    max-width: 60%;
+    max-width: 100%;
     background-color: #55868C;
     color: white;
-    padding: 10px 100px;
+    padding: 10px 300px;
     border-radius: 5px;
     align-self: center;
 }
@@ -130,5 +128,14 @@ nav .logo {
 .back-button {
     color: black;
     text-decoration: none;
-    font-size: 16px;
+}
+
+.backCont {
+    margin-top: 3rem;
+    margin-left: 4rem;
+}
+
+.head {
+    align-self: flex-start;
+    padding-bottom: 150px;
 }

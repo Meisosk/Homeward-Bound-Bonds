@@ -8,18 +8,11 @@
     <title>User Login Page</title>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="navbar-left"><img id="logo" src="images/petLogo.png"></div>
-        <div class="navbar-center">
-            <a href="#">Adopt</a>
-            <a href="#">Rehome</a>
-            <a href="#">Recently Adopted</a>
-            <a href="#">PROFILE</a>
-        </div>
-    </nav>
     </header>
-    <a href="#" class="back-button">&#8592; Back</a>
+    <div class = "backCont">
+    <a href="/" class="back-button"><i class="fa-solid fa-arrow-left fa-3x"></i></a></div>
     <div class="container">
+        <div class = "head"><h1>Sign Up</h1></div>
         <form method="POST" action="/user/new">
             <label for="fullName"></label>
             <input type="text" id="fullName" name="name" required placeholder="Full Name">
@@ -37,11 +30,10 @@
                 <label class="selection-label" for="adoptee">Adoptee</label>
             </div>
             <p class = "sign">Already have an account? <a href="/sign-in">Sign in!</a></p>
-            <button class="submit-button" type="submit">Create Account</button>
+            <button class="submit-button" type="submit">CONTINUE</button>
         </form>
     </div>
 
-
-
 </body>
+<script src="https://kit.fontawesome.com/8cee7d6611.js" crossorigin="anonymous"></script>
 </html>
