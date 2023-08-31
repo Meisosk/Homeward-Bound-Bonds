@@ -97,20 +97,27 @@ app.get("/signup", (req, res) => {
 
 app.post("/user/new", async (req, res) => {
   const { name, email, password, foster } = req.body;
-  try {
-    const newUser = await Users.create({
-      name,
-      email,
-      password,
-      foster,
-    });
-
-    res.redirect("/signin");
-  } catch (error) {
-    console.error("Error creating new post:", error);
-    res.status(500).send("An error occurred while creating a new post.");
+  if (email === "" || password === "") {
+    console.log("username or password is blank");
+  } else {
+    const salt = 10
+    const hash = await bcrypt.hash(password, salt);
+    try {
+        const newUser = await Users.create({
+          name,
+          email,
+          password: hash, 
+          foster
+        })
+      res.redirect("/signin");
+    } catch (e) {
+      if (e.name === "SequelizeUniqueConstraintError") {
+        console.log("Email is already taken");
+      }
+      res.redirect("/signup");
+    }
   }
-});
+})
 
 app.get("/signin", (req, res) => {
   res.render("sign-in");
@@ -121,22 +128,22 @@ app.post("/user/signin", async (req, res) => {
     const user = await Users.findOne({
       where: {
         email,
-        password
       },
     });
     if (user) {
-    
-       req.session.user = user
-       req.session.save(() =>{
-         res.redirect("/profile/user/" + user.id)
-       })
-
+      bcrypt.compare(password, user.password, (err, result) => {
+        if (result) {
+          req.session.user = user
+          req.session.save(() =>{
+            res.redirect("/profile/user/" + user.id)
+          })
+        } else {
+          res.redirect("/signin");
+        }
+      })
     } else {
-        console.log("incorrect login");
-        res.redirect("/signin");
+      res.redirect("/signin");
     }
-          
-      
   });
 
   app.get("/profile/pet/:id", checkAuth, async (req, res) => {
@@ -152,7 +159,7 @@ app.post("/user/signin", async (req, res) => {
       },
       partials: {
         nav: "partials/nav",
-        // mobilenav: "partials/mobilenav"
+        mobilenav: "partials/mobilenav"
       }
   });
 });
@@ -199,7 +206,7 @@ app.get("/profile/user/:id", checkAuth, checkId, async (req, res) => {
     },
     partials: {
       nav: "partials/nav",
-      // mobilenav: "partials/mobilenav"
+      mobilenav: "partials/mobilenav"
     }
 
 });
@@ -227,7 +234,12 @@ app.post("/logout", async (req, res) => {
 });
 
 app.get("/rehome", checkAuth, (req, res) => {
-  res.render("re-home");
+  res.render("re-home", {
+    partials: {
+      nav: "partials/nav",
+      mobilenav: "partials/mobilenav"
+    }
+  });
 });
 
 app.get("/adopted", (req, res) => {
