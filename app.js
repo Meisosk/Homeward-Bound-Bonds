@@ -23,11 +23,6 @@ const SequelizeStore =
       require("connect-session-sequelize")(session.Store)
 const store = new SequelizeStore({ db: Users.sequelize})
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(morgan('tiny'))
-
-
 app.use(session({
   secret: "this is secret",
   resave: false,
@@ -36,11 +31,18 @@ app.use(session({
 }))
 store.sync()
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(morgan('tiny'))
+
+
+
 app.get("/", (req, res) => {
-  if (req.session.user) {
-    return res.redirect("/profile/user/" + req.session.user.id);
-  }
-  res.render("home");
+  res.render("home", {
+    partials: {
+      nav: "partials/nav"
+    }
+  });
 });
 
 app.post("/pet-profile", async (req, res) => {
@@ -123,6 +125,8 @@ app.post("/user/signin", async (req, res) => {
     });
     if (user) {
        req.session.user = user
+       console.log("after setting", req.session.user)
+      //  console.log("after setting", req.session)
       res.redirect("/profile/user/" + user.id)
     } else {
         console.log("incorrect login");
@@ -140,20 +144,22 @@ app.get("/contact", (req, res) => {
   res.render("contact");
 });
 
+
 function checkAuth(req, res, next) {
   console.log("auth")
   if(req.session.user){
-    console.log("if 1")
+    console.log("there is a session")
     const sessId = req.session.user.id
     const paramId = parseInt(req.params.id )   
     if(sessId == paramId){
-      console.log("if 2")
+      console.log("correct id path")
       next()
     } else {
-      console.log("else")
+      console.log("wrong id path")
       res.redirect("/")
     }
   } else{
+    console.log("no user session")
     res.redirect("/")
   }
 }
