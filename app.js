@@ -209,6 +209,14 @@ app.get("/adopted", (req, res) => {
   res.render("recently-adopted");
 });
 
+app.get("/issignedin", (req, res) => {
+  const response = {
+    isSignedIn: req.session.user ? true : false,
+    userId: req.session.user ? req.session.user.id : null
+  };
+  res.json(response);
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on http://localhost:${port}`);
 });
