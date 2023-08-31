@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="/css/desk.css">
     <link rel="stylesheet" href="/css/petProfile.css">
     <title>Pet Profile</title>
   </head>
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> c0ce9bf (cant go to pet profile unless signed in and can add pets from form)
   <body>
     <nav class="navbar">
       <div class="navbar-left"><img id="logo" src="/images/petLogo.png"></div>
@@ -32,30 +36,49 @@
         </div>
       </form>
     </div>
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> c0ce9bf (cant go to pet profile unless signed in and can add pets from form)
     <div>
       <h1>Pet Information</h1>
       <form id="petInfoForm"  method="POST" action="/pet/new">
         <label for="petName"></label>
         <input type="text" id="petName" name="name" required placeholder="Name of Pet"><br><br>
+<<<<<<< HEAD
 
         <label for="petWeight"></label>
         <input type="number" id="petWeight" name="weight" required placeholder="Approximate Weight (lbs):"><br><br>
 
+=======
+        
+        <label for="petWeight"></label>
+        <input type="number" id="petWeight" name="weight" required placeholder="Approximate Weight (lbs):"><br><br>
+        
+>>>>>>> c0ce9bf (cant go to pet profile unless signed in and can add pets from form)
         <label for="petAge">Age:</label>
         <select id="petAge" name="age">
           <option value="young">Young</option>
           <option value="adult">Adult</option>
           <option value="senior">Senior</option>
         </select><br><br>
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> c0ce9bf (cant go to pet profile unless signed in and can add pets from form)
         <label for="petGender">Gender:</label>
         <select id="petGender" name="gender">
           <option value="male">Male</option>
           <option value="female">Female</option>
           <option value="unknown">Unknown</option>
         </select><br><br>
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> c0ce9bf (cant go to pet profile unless signed in and can add pets from form)
         <label for="petType">Type:</label>
         <select id="petType" name="type">
           <option value="dog">Dog</option>
@@ -63,10 +86,17 @@
           <option value="bird">Bird</option>
           <option value="miscellaneous">Miscellaneous</option>
         </select><br><br>
+<<<<<<< HEAD
 
         <label for="petBio">Short Bio:</label><br>
         <textarea id="petBio" name="bio" rows="4" cols="50"></textarea><br><br>
 
+=======
+        
+        <label for="petBio">Short Bio:</label><br>
+        <textarea id="petBio" name="bio" rows="4" cols="50"></textarea><br><br>
+        
+>>>>>>> c0ce9bf (cant go to pet profile unless signed in and can add pets from form)
         <button type="submit">Submit Pet Information</button>
       </form>
     </div>
@@ -75,7 +105,11 @@
   <script>
     const petPhotoInput = document.getElementById('petPhoto');
     const uploadedImage = document.getElementById('uploadedImage');
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> c0ce9bf (cant go to pet profile unless signed in and can add pets from form)
     petPhotoInput.addEventListener('change', function(event) {
       const file = event.target.files[0];
       if (file) {
@@ -87,4 +121,10 @@
 
   </body>
   <script src="https://kit.fontawesome.com/8cee7d6611.js" crossorigin="anonymous"></script>
+<<<<<<< HEAD
   </html>
+=======
+
+  
+</html>
+>>>>>>> c0ce9bf (cant go to pet profile unless signed in and can add pets from form)
