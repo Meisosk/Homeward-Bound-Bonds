@@ -124,10 +124,12 @@ app.post("/user/signin", async (req, res) => {
       },
     });
     if (user) {
+    
        req.session.user = user
-       console.log("after setting", req.session.user)
-      //  console.log("after setting", req.session)
-      res.redirect("/profile/user/" + user.id)
+       req.session.save(() =>{
+         res.redirect("/profile/user/" + user.id)
+       })
+
     } else {
         console.log("incorrect login");
         res.redirect("/signin");
@@ -146,20 +148,15 @@ app.get("/contact", (req, res) => {
 
 
 function checkAuth(req, res, next) {
-  console.log("auth")
   if(req.session.user){
-    console.log("there is a session")
     const sessId = req.session.user.id
     const paramId = parseInt(req.params.id )   
     if(sessId == paramId){
-      console.log("correct id path")
       next()
     } else {
-      console.log("wrong id path")
       res.redirect("/")
     }
   } else{
-    console.log("no user session")
     res.redirect("/")
   }
 }
@@ -196,6 +193,7 @@ app.delete('/profile/user/:id', async (req, res) => {
 app.post("/logout", async (req, res) => {
   try {
     req.session.destroy();
+    res.clearCookie('connect.sid')
     res.redirect("/");
   } catch (error) {
     console.error('Error destroying session:', error);
