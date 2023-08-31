@@ -52,3 +52,61 @@ h1{
     margin-top: 100px;
     margin-left: 18px;
 }
+
+#left, #right, .mobileSearch {
+    margin: 8px;
+}
+
+.mobilenav {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        background-color: #c8ab83;
+        color: black;
+      }
+
+
+ #logo2 {
+    max-width: 100px;
+    max-height: 100px;
+    margin: 0;
+    border-radius: 50%;
+ }     
+ 
+
+/* little screens */
+@media (max-width: 723px) {
+  .navbar {
+    display: none;
+  }
+
+  .mobilenav {
+    display: flex;
+  }
+
+  .search-area {
+    display: none;
+  }
+  .mobileSearch {
+    display: block;
+  }
+}
+
+/* big screens */
+@media (min-width: 723px) {
+    .mobilenav {
+      display: none;
+    }
+    
+    .navbar {
+        display: flex;
+      }
+
+      .search-area {
+        display: block;
+      }
+
+      .mobileSearch {
+        display: none;
+      }
+  }
