@@ -42,11 +42,6 @@ h1{
     background: linear-gradient(180deg, #6DB2BA 69.27%, #EEC584 99.99%, #7078c9 100%);
     color: white;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-<<<<<<< HEAD
-
-=======
-   
->>>>>>> c0ce9bf (cant go to pet profile unless signed in and can add pets from form)
 }
 
 #logo {
@@ -55,8 +50,62 @@ h1{
     border-radius: 50%;
     margin-top: 100px;
     margin-left: 18px;
-<<<<<<< HEAD
 }
-=======
+
+#left, #right, .mobileSearch {
+    margin: 8px;
 }
->>>>>>> c0ce9bf (cant go to pet profile unless signed in and can add pets from form)
+
+.mobilenav {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        background-color: #c8ab83;
+        color: black;
+      }
+
+
+ #logo2 {
+    max-width: 100px;
+    max-height: 100px;
+    margin: 0;
+    border-radius: 50%;
+ }     
+ 
+
+/* little screens */
+@media (max-width: 723px) {
+  .navbar {
+    display: none;
+  }
+
+  .mobilenav {
+    display: flex;
+  }
+
+  .search-area {
+    display: none;
+  }
+  .mobileSearch {
+    display: block;
+  }
+}
+
+/* big screens */
+@media (min-width: 723px) {
+    .mobilenav {
+      display: none;
+    }
+    
+    .navbar {
+        display: flex;
+      }
+
+      .search-area {
+        display: block;
+      }
+
+      .mobileSearch {
+        display: none;
+      }
+  }
