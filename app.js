@@ -40,7 +40,8 @@ app.use(morgan('tiny'))
 app.get("/", (req, res) => {
   res.render("home", {
     partials: {
-      nav: "partials/nav"
+      nav: "partials/nav",
+      mobilenav: "partials/mobilenav"
     }
   });
 });
