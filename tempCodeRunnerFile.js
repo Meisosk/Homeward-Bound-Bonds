@@ -1,1 +1,2 @@
 
+       req.session.user = user
