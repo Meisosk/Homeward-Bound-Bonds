@@ -47,7 +47,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/pet/new", async (req, res) => {
-  const { name, pics, age, gender, weight, type, bio, isAdopted, ownerId } =
+  const { name, pics, age, gender, weight, type, bio, isAdopted } =
     req.body;
   const newPet = await Pets.create({
     name,
@@ -58,7 +58,7 @@ app.post("/pet/new", async (req, res) => {
     type,
     bio,
     isAdopted,
-    ownerId,
+    ownerId: req.session.user.id
   });
   res.redirect("/");
 });
@@ -226,7 +226,7 @@ app.post("/logout", async (req, res) => {
   }
 });
 
-app.get("/rehome", (req, res) => {
+app.get("/rehome", checkAuth, (req, res) => {
   res.render("re-home");
 });
 
