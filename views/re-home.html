@@ -4,9 +4,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
-    <title>Document</title>
-</head>
-<body>
-    <script src="https://kit.fontawesome.com/8cee7d6611.js" crossorigin="anonymous"></script>
-</body>
-</html>
+    <link rel="stylesheet" href="/css/desk.css">
+    <link rel="stylesheet" href="/css/petProfile.css">
+    <title>Pet Profile</title>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="navbar-left"><img id="logo" src="/images/petLogo.png"></div>
+      <div class="navbar-words">
+          <a href="#">Adopt</a>
+          <a href="#">Rehome</a>
+          <a href="#">Recently Adopted</a>
+          <a href="/profile/user"><i class="fa-solid fa-circle-user fa-3x"></i></a>
+      </div>
+  </nav>
+
+
+  <div class="card-container profile">
+    <div>
+      <h1>Submit Image of your Pet</h1>
+      <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" id="petPhoto" name="petPhoto">
+        <button type="submit">Upload Photo</button>
+        <div class="image-preview">
+          <img id="uploadedImage" src="#" alt="Uploaded Pet Photo" style="max-width: 100%; height: auto;">
+        </div>
+      </form>
+    </div>
+
+    <div>
+      <h1>Pet Information</h1>
+      <form id="petInfoForm"  method="POST" action="/pet/new">
+        <label for="petName"></label>
+        <input type="text" id="petName" name="name" required placeholder="Name of Pet"><br><br>
+
+        <label for="petWeight"></label>
+        <input type="number" id="petWeight" name="weight" required placeholder="Approximate Weight (lbs):"><br><br>
+
+        <label for="petAge">Age:</label>
+        <select id="petAge" name="age">
+          <option value="young">Young</option>
+          <option value="adult">Adult</option>
+          <option value="senior">Senior</option>
+        </select><br><br>
+
+        <label for="petGender">Gender:</label>
+        <select id="petGender" name="gender">
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="unknown">Unknown</option>
+        </select><br><br>
+
+        <label for="petType">Type:</label>
+        <select id="petType" name="type">
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+          <option value="bird">Bird</option>
+          <option value="miscellaneous">Miscellaneous</option>
+        </select><br><br>
+
+        <label for="petBio">Short Bio:</label><br>
+        <textarea id="petBio" name="bio" rows="4" cols="50"></textarea><br><br>
+
+        <button type="submit">Submit Pet Information</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const petPhotoInput = document.getElementById('petPhoto');
+    const uploadedImage = document.getElementById('uploadedImage');
+
+    petPhotoInput.addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const imageURL = URL.createObjectURL(file);
+        uploadedImage.src = imageURL;
+      }
+    });
+  </script>
+
+  </body>
+  <script src="https://kit.fontawesome.com/8cee7d6611.js" crossorigin="anonymous"></script>
+  </html>
