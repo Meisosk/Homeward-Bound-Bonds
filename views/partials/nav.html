@@ -1,9 +1,17 @@
 <nav class="navbar">
-    <div class="navbar-left"><img id="logo" src="images/petLogo.png"></div>
-    <div class="navbar-center">
+    <div class="navbar-left"><img id="logo" src="/images/petLogo.png"></div>
+    <div class="navbar-words">
         <a href="#">Adopt</a>
         <a href="#">Rehome</a>
         <a href="#">Recently Adopted</a>
-        <a href="#"><a href="/profile/user"><i class="fa-solid fa-circle-user fa-3x"></i></a></a>
+        <a  class = "profile-btn" href=""><button style="background: transparent;
+            border: none !important;" class = "profile-btn"><i class="fa-solid fa-circle-user fa-3x"></i></button></a>
     </div>
 </nav>
+
+<script>
+    const profile = document.querySelector(".profile-btn")
+    profile.addEventListener("click", () => {
+        profile.href = "/signup"
+    })
+</script>
