@@ -14,7 +14,7 @@ module.exports = {
         allowNull: false
       },
       pics: {
-        type: Sequelize.STRING,
+        type: Sequelize.BLOB,
       },
       age: {
         type: Sequelize.STRING,
