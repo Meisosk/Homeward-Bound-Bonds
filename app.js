@@ -8,7 +8,7 @@ const passport = require("passport");
 const multer = require("multer");
 const { Users, Pets } = require("./models");
 const morgan = require('morgan')
-const sharp = require('sharp');
+// const sharp = require('sharp');
 const path = require("path")
 
 const storage = multer.memoryStorage();
