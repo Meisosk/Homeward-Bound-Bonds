@@ -8,7 +8,11 @@ const passport = require("passport");
 const multer = require("multer");
 const { Users, Pets } = require("./models");
 const morgan = require('morgan')
+const sharp = require('sharp');
 const path = require("path")
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
 const app = express();
 const port = 3000;
@@ -17,6 +21,7 @@ app.engine("html", es6);
 app.set("views", "views");
 app.set("view engine", "html");
 app.use(express.static("public"));
+
 
 
 const SequelizeStore = 
@@ -46,22 +51,55 @@ app.get("/", (req, res) => {
   });
 });
 
-app.post("/pet/new", async (req, res) => {
-  const { name, pics, age, gender, weight, type, bio, isAdopted } =
-    req.body;
-  const newPet = await Pets.create({
-    name,
-    pics,
-    age,
-    gender,
-    weight,
-    type,
-    bio,
-    isAdopted,
-    ownerId: req.session.user.id
-  });
-  res.redirect("/");
+// app.post("/pet/new", async (req, res) => {
+//   const { name, pics, age, gender, weight, type, bio, isAdopted } =
+//     req.body;
+//   const newPet = await Pets.create({
+//     name,
+//     pics,
+//     age,
+//     gender,
+//     weight,
+//     type,
+//     bio,
+//     isAdopted,
+//     ownerId: req.session.user.id
+//   });
+//   res.redirect("/");
+// });
+
+app.post('/pet/new', upload.single('petPhoto'), async (req, res) => {
+  try {
+    // Get the pet information from the request body
+    const { name, weight, age, gender, type, bio } = req.body;
+
+    // req.file.buffer contains the uploaded image data
+    if (!req.file) {
+      return res.status(400).send('No image uploaded.');
+    }
+
+    const newPet = await Pets.create({
+      name,
+      weight,
+      age,
+      gender,
+      type,
+      bio,
+      isAdopted: false,
+      ownerId: req.session.user.id,
+      pics: req.file.buffer, 
+    });
+
+    res.redirect('/success'); 
+  } catch (error) {
+    console.error(error);
+    res.redirect('/error');
+  }
 });
+
+
+
+
 
 //placeholder update route//
 app.put("/pet-profile/:id", async (req, res) => {
@@ -241,6 +279,9 @@ app.get("/rehome", checkAuth, (req, res) => {
     }
   });
 });
+
+
+
 
 app.get("/adopted", (req, res) => {
   res.render("recently-adopted");
