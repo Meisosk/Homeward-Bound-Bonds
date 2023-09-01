@@ -5,7 +5,7 @@ body {
 
 .celebration {
     font-size: 36px;
-    color: #FFD700; /* Gold color */
+    color: #3913c2; /* Gold color */
     animation: scaleAndFade 2s ease-in-out infinite alternate;
 }
 
@@ -25,30 +25,116 @@ body {
 }
 
 
-nav {
-    background-color: #9BB1FF;
-    color: black;
+body {
+    background-color: #d9d4cd;
+    margin: 0%;
+    padding: 0%;
+  }
+  
+  /* Style for the navigation bar */
+  .navbar {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    background-color: #c8ab83;
+    color: black;
     padding: 10px 20px;
-}
-
-nav a {
+    height: 60px;
+    margin-bottom: auto;
+  }
+  
+  .navbar-words {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .navbar a {
     color: black;
     text-decoration: none;
-    margin-left: 20px;
-    font-weight: bold;
-}
+    padding: 10px;
+    border-radius: 16px;
+    font-family: "Gluten", cursive;
+  }
+  
+  .navbar a:hover {
+    background: linear-gradient(
+      180deg,
+      #6db2ba 69.27%,
+      #eec584 99.99%,
+      #7078c9 100%
+    );
+    color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
 
-nav a:hover {
-    text-decoration: underline;
-}
-
-nav .logo {
-    font-size: 24px;
-    margin-right: auto;
-}
+  
+#logo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-top: 100px;
+    margin-left: 18px;
+  }
+  
+  #left, #right, .mobileSearch {
+      margin: 8px;
+  }
+  
+  .mobilenav {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+          background-color: #c8ab83;
+          color: black;
+        }
+  
+  
+   #logo2 {
+      max-width: 100px;
+      max-height: 100px;
+      margin: 0;
+      border-radius: 50%;
+   }     
+  
+  
+  /* little screens */
+  @media (max-width: 723px) {
+    .navbar {
+      display: none;
+    }
+  
+    .mobilenav {
+      display: flex;
+    }
+  
+    .search-area {
+      display: none;
+    }
+    .mobileSearch {
+      display: block;
+    }
+  }
+  
+  /* big screens */
+  @media (min-width: 723px) {
+      .mobilenav {
+        display: none;
+      }
+      
+      .navbar {
+          display: flex;
+        }
+  
+        .search-area {
+          display: block;
+        }
+  
+        .mobileSearch {
+          display: none;
+        }
+    }
 
 .back-button {
     color: black;
