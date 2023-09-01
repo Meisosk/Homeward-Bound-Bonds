@@ -42,8 +42,14 @@ app.use(morgan('tiny'))
 
 
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
+  const pets = await Pets.findAll({
+    attributes: ["name", "gender", "age", "id"],
+  });
   res.render("home", {
+    locals: {
+      pets
+    },
     partials: {
       nav: "partials/nav",
       mobilenav: "partials/mobilenav"
@@ -89,8 +95,8 @@ app.post('/pet/new', upload.single('petPhoto'), async (req, res) => {
       ownerId: req.session.user.id,
       pics: req.file.buffer, 
     });
-
-    res.redirect('/success'); 
+    
+    res.redirect('/profile/pet/' + newPet.id); 
   } catch (error) {
     console.error(error);
     res.redirect('/error');
@@ -193,7 +199,7 @@ app.post("/user/signin", async (req, res) => {
     });
     res.render("pet-profile", {
       locals: { 
-        bio: pet.bio,    
+        pet,    
       },
       partials: {
         nav: "partials/nav",

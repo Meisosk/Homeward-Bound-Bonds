@@ -1,2 +1,1 @@
-
-       req.session.user = user
+redirect
