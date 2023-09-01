@@ -44,7 +44,7 @@ app.use(morgan('tiny'))
 
 app.get("/", async (req, res) => {
   const pets = await Pets.findAll({
-    attributes: ["name", "gender", "age", "id"],
+    attributes: ["name", "gender", "age", "id", "pics"],
   });
   res.render("home", {
     locals: {
@@ -57,22 +57,6 @@ app.get("/", async (req, res) => {
   });
 });
 
-// app.post("/pet/new", async (req, res) => {
-//   const { name, pics, age, gender, weight, type, bio, isAdopted } =
-//     req.body;
-//   const newPet = await Pets.create({
-//     name,
-//     pics,
-//     age,
-//     gender,
-//     weight,
-//     type,
-//     bio,
-//     isAdopted,
-//     ownerId: req.session.user.id
-//   });
-//   res.redirect("/");
-// });
 
 app.post('/pet/new', upload.single('petPhoto'), async (req, res) => {
   try {
