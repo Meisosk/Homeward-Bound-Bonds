@@ -14,18 +14,16 @@ ${nav}
 
   <div class="card-container profile">
     <div>
-      <h1>Submit Image of your Pet</h1>
-      <form id="uploadForm" enctype="multipart/form-data">
-        <input type="file" id="petPhoto" name="petPhoto">
-        <button type="submit">Upload Photo</button>
-        <div class="image-preview">
-          <img id="uploadedImage" src="#" alt="Uploaded Pet Photo" style="max-width: 100%; height: auto;">
-        </div>
-      </form>
-    </div>
-    <div>
+        <h1>Submit Pet Information</h1>
+        <form id="petInfoForm" method="POST" action="/pet/new" enctype="multipart/form-data">
+          <!-- Pet Photo Input -->
+          <label for="petPhoto">Upload a Photo of Your Pet:</label>
+          <input type="file" id="petPhoto" name="petPhoto" accept="image/*" required>
+          <div class="image-preview">
+            <img id="uploadedImage" src="#" alt="Uploaded Pet Photo" style="max-width: 100%; height: auto;">
+          </div>
+          <div>
       <h1>Pet Information</h1>
-      <form id="petInfoForm"  method="POST" action="/pet/new">
         <label for="petName"></label>
         <input type="text" id="petName" name="name" required placeholder="Name of Pet"><br><br>
 
@@ -61,21 +59,45 @@ ${nav}
   </div>
 
   <script>
-    document.getElementById("uploadForm").addEventListener("submit", function (event) {
-      event.preventDefault(); // Prevent form submission
-  
-      const petPhotoInput = document.getElementById("petPhoto");
-      const uploadedImage = document.getElementById("uploadedImage");
-  
-      const file = petPhotoInput.files[0];
-      if (file) {
-          const reader = new FileReader();
-          reader.onload = function (e) {
-              uploadedImage.src = e.target.result;
-          };
-          reader.readAsDataURL(file);
-      }
-  });
+document.getElementById("petPhoto").addEventListener("change", function (event) {
+  const uploadedImage = document.getElementById("uploadedImage");
+  const file = event.target.files[0];
+
+  if (file) {
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+      uploadedImage.src = e.target.result;
+    };
+
+    reader.readAsDataURL(file);
+  }
+});
+
+document.getElementById("petInfoForm").addEventListener("submit", async function (event) {
+  event.preventDefault(); // Prevent form submission
+
+  // Collect pet information from the form
+  const formData = new FormData(this);
+
+  // Send a POST request with the form data, including the uploaded photo
+  try {
+    const response = await fetch('/pet/new', {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (response.ok) {
+      // Redirect to a success page or handle success as needed
+      window.location.href = '/success';
+    } else {
+      // Handle errors
+      console.error('Submission failed.');
+    }
+  } catch (error) {
+    console.error(error);
+  }
+});
 </script>
   </body>
   <script src="https://kit.fontawesome.com/8cee7d6611.js" crossorigin="anonymous"></script>
