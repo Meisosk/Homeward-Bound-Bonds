@@ -108,7 +108,7 @@
             </div>
             ${pets.map(pet => `
                 <div class="card">
-                    <img src="/images/goat.jpeg" alt="Desoto">
+                    <img src="data:image/jpeg;base64,${pet.pics.toString('base64')}" alt="Desoto">
                     <div class="card-info">
                         <div class="info-container">
                             <div class="card-name">
