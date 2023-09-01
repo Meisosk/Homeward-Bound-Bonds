@@ -191,11 +191,40 @@ app.post("/user/signin", async (req, res) => {
       }
   });
 });
+// http://localhost:3000/contact/pet/20
+app.get("/contact/pet/:id", async (req, res) => {
+  // const { id } = req.params;
+  
+  // const user = req.session.user
+  console.log(req.session)
 
-app.get("/contact", (req, res) => {
-  res.render("contact");
-});
+//   const pet = await Pets.findOne({
+//     attributes: ["ownerId"],
+//     where: {
+//       id,
+//     },
+//   });
+//   const ownerId = pet.ownerId
+//   const email = await Users.findOne({
+//     attributes: ["email"],
+//     where: {
+//       id: ownerId
+//     },
+//   });
+// res.json(email)
 
+
+  // res.render("contact", {
+  //   locals: {
+  //     pet,
+  //     user
+  //   },
+  //   partials: {
+  //     nav: "partials/nav",
+  //     mobilenav: "partials/mobilenav"
+  //   }
+  // });
+})
 
 function checkAuth(req, res, next) {
   if(req.session.user){
@@ -269,7 +298,6 @@ app.get("/rehome", checkAuth, (req, res) => {
     }
   });
 });
-
 
 
 

@@ -1,1 +1,1 @@
-redirect
+  // const user = req.session.user
