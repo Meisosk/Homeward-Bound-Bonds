@@ -10,21 +10,20 @@
 <body>
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="#">Adopt</a>
-            <a href="#">Re-Home</a>
-        </nav>
-    </header>
-    <a href="#" class="back-button">&#8592; Back</a>
+${nav}
+${mobilenav}
+<a href="/" class="back-button"><i class="fa-solid fa-arrow-left fa-3x"></i></a></div>
     <div class="celebration">You Chose Kody!</div>
     
     <div class="email-form">
-        <form action="mailto:kagaminohoshiko@gmail.com" method="post" enctype="text/plain">
+        <!-- <form action="mailto:kagaminohoshiko@gmail.com" method="post" enctype="text/plain">
             <label for="emailText">Enter your message:</label><br>
-            <textarea id="emailText" name="body" rows="4" cols="50"></textarea><br><br>
+            <textarea id="emailText" name="body" rows="4" cols="50" placeholder="Let the owner know you're interested in adopting!"></textarea><br><br>
             <input type="submit" value="Send Email">
-        </form>
+        </form> -->
+        ${user}
+        ${pet}
+
     </div>
 </body>
 <script src="https://kit.fontawesome.com/8cee7d6611.js" crossorigin="anonymous"></script>
