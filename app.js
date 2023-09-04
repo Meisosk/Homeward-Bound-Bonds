@@ -193,38 +193,62 @@ app.post("/user/signin", async (req, res) => {
 });
 // http://localhost:3000/contact/pet/20
 app.get("/contact/pet/:id", async (req, res) => {
-  // const { id } = req.params;
+  const { id } = req.params;
   
-  // const user = req.session.user
-  console.log(req.session)
-
-//   const pet = await Pets.findOne({
-//     attributes: ["ownerId"],
-//     where: {
-//       id,
-//     },
-//   });
-//   const ownerId = pet.ownerId
-//   const email = await Users.findOne({
-//     attributes: ["email"],
-//     where: {
-//       id: ownerId
-//     },
-//   });
-// res.json(email)
-
-
-  // res.render("contact", {
-  //   locals: {
-  //     pet,
-  //     user
-  //   },
-  //   partials: {
-  //     nav: "partials/nav",
-  //     mobilenav: "partials/mobilenav"
-  //   }
-  // });
+  res.render("contact", {
+    locals: {
+      petId: id
+    },
+    partials: {
+      nav: "partials/nav",
+      mobilenav: "partials/mobilenav"
+    }
+  });
 })
+
+app.post("/contact/pet/:id", async (req, res) => {
+  const { body } = req.body;
+  const { id } = req.params;
+  const user = req.session.user.email;
+
+  const pet = await Pets.findOne({
+    attributes: ["ownerId"],
+    where: {
+      id,
+    },
+  });
+  const ownerId = pet.ownerId;
+  const owner = await Users.findOne({
+    attributes: ["email"],
+    where: {
+      id: ownerId,
+    },
+  });
+  const ownerEmail = owner.dataValues.email;
+
+  const API_KEY = 'key-a1cc41e70644d1d012b4d30abc369814';
+  const DOMAIN = 'sandboxd002fcec38864a7692e15ede0959674c.mailgun.org';
+  const formData = require('form-data');
+  const Mailgun = require('mailgun.js');
+  const mailgun = new Mailgun(formData);
+  const mg = mailgun.client({username: 'api', key:  API_KEY});
+  
+  mg.messages.create(DOMAIN, {
+    from: user,
+    to: ownerEmail,
+    subject: "I would like to adopt your pet!",
+    text: body,
+  })
+  .then(msg => {
+    console.log(msg)
+    res.redirect("/profile/user/" + req.session.user.id);
+  })
+    .catch((error) => {
+      console.error('Email sending error:', error);
+      res.redirect("/profile/user/" + req.session.user.id);
+    });
+});
+
 
 function checkAuth(req, res, next) {
   if(req.session.user){
