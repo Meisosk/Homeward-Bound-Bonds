@@ -11,36 +11,38 @@
     <title>Profile</title>
 </head>
 <body>
-    <!-- ${nav} -->
-    <!-- ${mobilenav} -->
     <div class="profile-container">
-        <div class="background-shape"></div>
-        <div class="profile">
-    <h1>${name}'s Page</h1>
-    <div class="bar">
-        User Info
-    </div>
-    <p>Email: ${email}</p>
-    <div class="bar">
-        Pending Adoptions
-    </div>
-    <div>
-        <p><a class = "pendingPet" href="/">Kody</a></p>
-        <button class = "btn btn-danger hover">Cancel This Pending Adoption</button>
-        <div>
-            <button class ="happyBtn">Adopt</button>
+        <div class="profile-info">
+            <h2>${name}'s Profile</h2>
+            <p>Email: ${email}</p>
+        </div>
+        <div class="pending-adoptions">
+            <h2>Pending Adoptions</h2>
+            <div class="pet-card">
+                <p><a class = "pendingPet" href="/">Miya</a></p>
+                <button class="cancel-button">Cancel This Pending Adoption</button>
+            </div>
+            <div class="pet-card">
+                <p><a class = "pendingPet" href="/">Kody</a></p>
+                <button class="cancel-button">Cancel This Pending Adoption</button>
+            </div>
+            <div class="pet-card">
+                <p><a class = "pendingPet" href="/">Miyo</a></p>
+                <button class="cancel-button">Cancel This Pending Adoption</button>
+            </div>
+        </div>
+        <div class="user-actions">
+            <h2>User Actions</h2>
+            <button class="edit-button">Edit Profile</button>
+            <button class="go-home-button">Go to Home</button>
+            <form action="/logout" method="POST">
+            <button class="logout-button">Log Out</button>
+        </form>
+            <form id="deleteForm" method="POST">
+            <button class="delete-button" onclick="deleteProfile()" >Delete Account</button>
+            </form>
         </div>
     </div>
-    <div class="bar">
-        Delete Account
-    </div>
-    <form action="/logout" method="POST">
-        <button class= "btn btn-danger hover up">Logout</button>
-    </form>
-    <form id="deleteForm" method="POST">
-        <button class="btn btn-danger hover" type="button" onclick="deleteProfile()">Delete Profile</button>
-      </form>
-</body>
 
 <script>
     function deleteProfile() {
