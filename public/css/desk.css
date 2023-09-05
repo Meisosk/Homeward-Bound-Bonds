@@ -100,8 +100,8 @@ body {
 .card-name {
   display: flex;
   border-radius: 16px;
-  align-items: center;
-  /* margin-left: 40px; */
+  align-items: flex-start; 
+  flex-direction: column;
   font-family: "Gluten", cursive;
 }
 
@@ -115,10 +115,10 @@ body {
   color: black;
   justify-content: flex-end;
   border: none;
-  padding: 5px 20px;
+  padding: 15px 20px;
   cursor: pointer;
   margin-top: auto;
-  width: 60%;
+  width: 75%;
   border-radius: 16px;
 }
 
@@ -128,9 +128,8 @@ body {
 }
 .info-container {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: flex-start;
-  /* margin-left: 40px; */
   flex: 1;
 }
 
@@ -143,11 +142,12 @@ body {
 .info-container .card-gender {
   font-size: 1.5rem;
   margin-left: 20px;
+  padding-right: 10px;
 }
 
 .info-container .card-age {
   font-size: 1.5rem;
-  align-self: center;
+  margin-top: 20px;
 }
 
 .info-container p {
