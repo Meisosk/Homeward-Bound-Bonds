@@ -34,12 +34,12 @@
         <div class="user-actions">
             <h2>User Actions</h2>
             <button class="edit-button">Edit Profile</button>
-            <button class="go-home-button">Go to Home</button>
+            <a href="/"><button class="go-home-button">Go to Home</button></a>
             <form action="/logout" method="POST">
-            <button class="logout-button">Log Out</button>
-        </form>
+                <button class="logout-button">Log Out</button>
+            </form>
             <form id="deleteForm" method="POST">
-            <button class="delete-button" onclick="deleteProfile()" >Delete Account</button>
+                <button class="delete-button" onclick="deleteProfile()" >Delete Account</button>
             </form>
         </div>
     </div>
