@@ -60,7 +60,8 @@ body {
 
 .card {
   display: flex;
-  flex-basis: calc(30% - 20px);
+  width: 27vw;
+  min-height: 36vh;
   border: 1px solid #ddd;
   margin-bottom: 20px;
   border-radius: 16px;
@@ -100,7 +101,7 @@ body {
   display: flex;
   border-radius: 16px;
   align-items: center;
-  margin-left: 40px;
+  /* margin-left: 40px; */
   font-family: "Gluten", cursive;
 }
 
@@ -129,7 +130,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-left: 40px;
+  /* margin-left: 40px; */
   flex: 1;
 }
 
@@ -177,20 +178,13 @@ body {
         color: black;
       }
 
-
+ 
  #logo2 {
     max-width: 100px;
     max-height: 100px;
     margin: 0;
     border-radius: 50%;
  }     
-
- #uploadedImage {
-  max-width: 384px;
-  max-height: 413px;
-  overflow: hidden;
- }
- 
 
 /* little screens */
 @media (max-width: 723px) {
@@ -228,3 +222,19 @@ body {
         display: none;
       }
   }
+
+/* two rows */
+@media (max-width: 1500px) {
+  .card{
+    width: 40vw;
+  }
+}
+/* one row */
+@media (max-width: 900px) {
+  .card{
+    width: 75vw;
+  }
+}
+
+
+
