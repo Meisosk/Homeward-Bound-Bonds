@@ -194,6 +194,10 @@ app.post("/user/signin", async (req, res) => {
     }
   });
 
+  function titleCase(str) {
+    return str.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  }
+
   app.get("/profile/pet/:id", checkAuth, async (req, res) => {
     const { id } = req.params;
     const pet = await Pets.findOne({
@@ -201,6 +205,10 @@ app.post("/user/signin", async (req, res) => {
         id
       }
     });
+
+  pet.age = titleCase(pet.age);
+  pet.gender = titleCase(pet.gender);
+
     res.render("pet-profile", {
       locals: { 
         pet,    
