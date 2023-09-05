@@ -35,10 +35,10 @@
             <h2>User Actions</h2>
             <div class="edit-email-form" id="edit-email-form" style="display: none;">
                 <h2>Edit User Information</h2>
-                <form id="email-form">
+                <form id="email-form" method="PATCH">
                     <label for="new-email">New Email:</label>
                     <input type="email" id="new-email" name="new-email" required>
-                    <button type="submit" onclick="saveEdit()">Save</button>
+                    <button type="submit">Save</button>
                     <button type="button" onclick="cancelEditEmail()">Cancel</button>
                 </form>
             </div>
@@ -87,24 +87,34 @@
 }
 
 
-function saveEdit(event) {
-    event.preventDefault();
-
-    const newEmail = document.getElementById('new-email').value;
-    const userId =  getUserIdFromUrl()
-
-    fetch("/profile/user/ + userId", {
-        method: 'PATCH',
-        body: JSON.stringify({
-            newEmail: newEmail
+const emailForm = document.getElementById("email-form");
+emailForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const userId = getUserIdFromUrl()
+        const formData = new FormData(emailForm);
+        const newEmail = formData.get("new-email");
+        console.log("Email:", newEmail);
+        fetch("/profile/user/" + userId, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: newEmail,
+            }),
         })
-    })
-    .then(response => response.json())
-      .then(data => {
-            const emailInfo = document.querySelector('.profile-info p').textContent
-            emailInfo = "email: + newEmail";
-     
-    })}
+        .then(response => response.json())
+        .then(data => {
+            // Handle the response from the server
+            console.log("Updated User:", data);
+            // You can also update the UI to reflect the changes if needed
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+    });
+
+
 
     </script>
     <script src="https://kit.fontawesome.com/8cee7d6611.js" crossorigin="anonymous"></script>

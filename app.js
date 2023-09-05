@@ -297,15 +297,18 @@ app.get("/profile/user/:id", checkAuth, checkId, async (req, res) => {
 })
 
 
-app.put('/profile/user/:id', async (req, res) => {
+
+app.patch('/profile/user/:id', async (req, res) => { 
   const userId = req.params.id;
-  const {newEmail} = req.body;
+  const { email } = req.body; 
   const user = await Users.findByPk(userId);
 
-  if (newEmail) user.email = newEmail;
-  await user.save();
-  res.json(user);
-});
+  if (email) {
+    user.email = email;
+    await user.save();
+    res.json(user);
+}});
+
 
 app.delete('/profile/user/:id', async (req, res) => {
   const { id } = req.params;
