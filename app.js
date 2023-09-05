@@ -119,6 +119,9 @@ app.put("/pet-profile/:id", async (req, res) => {
   }
 });
 
+
+
+
 app.get("/signup", (req, res) => {
   res.render("sign-up");
 });
@@ -292,6 +295,18 @@ app.get("/profile/user/:id", checkAuth, checkId, async (req, res) => {
 
 });
 })
+
+
+app.put('/profile/user/:id', async (req, res) => {
+  const userId = req.params.id;
+  const {email} = req.body;
+  const user = await Users.findByPk(userId);
+
+  if (email) user.email = email;
+  await user.save();
+  res.json(user);
+});
+
 
 app.delete('/profile/user/:id', async (req, res) => {
   const { id } = req.params;
