@@ -1,173 +1,127 @@
 body {
-  background-color: #d9d4cd;
-  margin: 0%;
-  padding: 0%;
+    background-image: url("/images/back.jpg");
+    background-size: cover;
+
 }
+
 
 
 .profile-container {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 90vh;
-
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 80%;
+    max-width: 700px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    margin-top: 1rem;
 }
 
-.background-shape {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 60%;
-  background-color: #c8ab83; /* Blue background color */
-  clip-path: polygon(0% 0%, 100% 0%, 100% 60%, 50% 100%, 0% 60%); /* Creates a curved shape */
-  z-index: -1; /* Place it behind the profile */
+
+.pending-adoptions {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+    background-color: #c8ab83;
 }
 
-.profile {
-  text-align: center;
-  background-color: #fff; 
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  width: 40%;
-}
-
-.profile p,
-.profile button {
-  margin-bottom: 15px;
-}
 
 .pendingPet {
-  text-decoration: none;
-  font-weight: bold;
-  color: black;
-  font-size: 24px;
-  transition: font-size 0.3s, background-color 0.3s;
+    text-decoration: none;
+    color: black;
+    font-size: large;
 }
 
 .pendingPet:hover {
-  font-size: 28px;
-  color: blue;
+    font-size: 28px;
+    color: blue;
+  }
+
+.user-actions {
+    padding: 20px;
+    text-align: center;
+    background-color: #6db2ba; 
 }
 
-.hover:hover {
-  transform: scale(1.05);
+
+h2 {
+    color: #fff;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
-.happyBtn {
-    padding: 10px 20px;
-    background-color: #ffcc00; /* Yellow background color */
-    color: #fff; /* White text color */
+
+.pet-card {
+    background-color: #fff;
+    padding: 10px;
+    margin: 10px 0;
     border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-
-
-.happyBtn:hover {
-  text-transform: uppercase;
-  background-color: #ff9900; /* Brighter yellow on hover */
-  transform: scale(1.05);
-  animation: pulse 1.5s infinite alternate; /* Pulse animation */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.1);
-  }
+
+.cancel-button {
+    background-color: #ff5722; 
+    color: #fff; 
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #C8AB83;
+.cancel-button:hover {
+    background-color: #ff7043;
+    transform: scale(1.05);
+}
+
+
+.delete-button, .logout-button, .go-home-button, .edit-button {
+    background-color: #c8ab83; 
     color: black;
+    border: none;
     padding: 10px 20px;
-    height: 100px;
-    margin-bottom: auto;
+    margin: 10px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.up {
-  margin-top: 15px;
-}
-
-#logo {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    margin-top: 100px;
-    margin-left: 18px;
-}
-
-#left, #right, .mobileSearch {
-    margin: 8px;
-}
-
-.mobilenav {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        background-color: #c8ab83;
-        color: black;
-      }
-
-
- #logo2 {
-    max-width: 100px;
-    max-height: 100px;
-    margin: 0;
-    border-radius: 50%;
- }     
- 
-
- h1{
-  text-align: center;
-}
-
-.bar{
-  background-color: lightgray;
-}
-
-/* little screens */
-@media (max-width: 723px) {
-  .navbar {
-    display: none;
-  }
-
-  .mobilenav {
-    display: flex;
-  }
-
-  .search-area {
-    display: none;
-  }
-  .mobileSearch {
-    display: block;
-  }
-}
-
-/* big screens */
-@media (min-width: 723px) {
-    .mobilenav {
-      display: none;
+    .logout-button, .delete-button {
+        background-color: red;
+        color: white;
     }
-    
-    .navbar {
-        display: flex;
-      }
 
-      .search-area {
-        display: block;
-      }
+.delete-button:hover::after, .logout-button:hover::after  {
+    background-color: #ff0000;
+    color: black;
+    content: "......Are you sure?";
+}
 
-      .mobileSearch {
-        display: none;
-      }
+.go-home-button:hover, .edit-button:hover
+{
+    transform: scale(1.05);
   }
+
+.profile-info {
+    background-color: #6db2ba;
+    padding: 20px;
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+}
+
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+
+p {
+    font-size: 16px;
+    color: black; 
+}

@@ -16,6 +16,7 @@ body {
   margin-bottom: auto;
 }
 
+
 .navbar-words {
   display: flex;
   justify-content: flex-end;
@@ -31,7 +32,7 @@ body {
   font-family: "Gluten", cursive;
 }
 
-.navbar a:hover {
+.navbar-words a:hover {
   background: linear-gradient(
     180deg,
     #6db2ba 69.27%,
@@ -103,19 +104,20 @@ body {
   font-family: "Gluten", cursive;
 }
 
-.button {
+/* .button {
   display: flex;
   justify-content: flex-end;
-}
+} */
 
 .card-button {
   background-color: #eec584;
   color: black;
+  justify-content: flex-end;
   border: none;
-  padding: 5px 10px;
+  padding: 5px 20px;
   cursor: pointer;
   margin-top: auto;
-  width: 50%;
+  width: 60%;
   border-radius: 16px;
 }
 

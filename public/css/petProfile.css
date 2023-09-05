@@ -39,7 +39,7 @@ body {
     font-family: "Gluten", cursive;
   }
   
-  .navbar a:hover {
+  .navbar-words a:hover {
     background: linear-gradient(
       180deg,
       #6db2ba 69.27%,
