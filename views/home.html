@@ -103,8 +103,11 @@
                     <div class="info-container">
                         <div class="card-name">
                             <h3>Desoto</h3>
-                        <div class="card-gender"><i class="fa-solid fa-venus"></i></div></div>
-                        <div class="card-age">Young</div>
+                            <div class="card-age">Young</div>
+                        </div>
+                        <div class="card-gender">
+                            <i class="fa-solid fa-venus"></i>
+                        </div>
                     </div>
                     <div class="button">
                         <button class="card-button">Learn More</button>
@@ -118,11 +121,11 @@
                         <div class="info-container">
                             <div class="card-name">
                                 <h3>${pet.name}</h3>
+                                <div class="card-age">${pet.age}</div>
+                            </div>
                             <div class="card-gender"> 
                                 <i class='${pet.gender === "male" ? "fa-solid fa-mars" : "fa-solid fa-venus" }'></i>  
                             </div>
-                            </div>
-                            <div class="card-age">${pet.age}</div>
                         </div>
                         <div class="button">
                             <a href="/profile/pet/${pet.id}" ><button class="card-button">Learn More</button></a>
@@ -132,12 +135,7 @@
             `).join('')}
             
 
-<!-- <script>
-    const genderCard = document.querySelector(".card-gender")
-    function genderPopulation(gender){
-   console.log(gender)
-   }
-</script> -->
+
 </body>
 <script src="https://kit.fontawesome.com/8cee7d6611.js" crossorigin="anonymous"></script>
 </html>
