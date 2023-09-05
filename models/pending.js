@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Pending.init({
-    name: DataTypes.INTEGER
+    petId: DataTypes.INTEGER,
+    userId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Pending',

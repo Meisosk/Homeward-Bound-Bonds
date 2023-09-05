@@ -15,7 +15,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Adopted.init({
-    name: DataTypes.INTEGER
+    petId: DataTypes.INTEGER,
+    userId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Adopted',
