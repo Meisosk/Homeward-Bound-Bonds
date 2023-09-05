@@ -4,8 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
-    <!-- <link rel="stylesheet" href="/css/desk.css"> -->
     <link rel="stylesheet" href="/css/petProfile.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gluten:wght@300&display=swap" rel="stylesheet">
     <title>Pet Profile</title>
   </head>
   
@@ -25,23 +27,20 @@
       <div class="info-adopt">
           <div class="animal-info">
               <div class="stat">
+                <span class = "label">Age</span>
                 ${pet.age} 
-                  <br>
-                  <span class = "label">Age</span>
               </div>
               <div class="stat">
-                ${pet.weight}
-                  <br>
-                  <span class = "label">Weight</span>
+                <span class = "label">Weight</span>
+                ${pet.weight} Lbs
               </div>
               <div class="stat">
+                <span class = "label">Sex</span>
                 ${pet.gender} 
-                  <br>
-              <span class = "label">Sex</span>
               </div>
           </div>
           <div class="adopt">
-            <a href="/contact/pet/${pet.id} " ><button class="card-button">Adopt!</button></a>
+            <a href="/contact/pet/${pet.id} " ><button class="card-button">Ask to Adopt Me!</button></a>
           </div>
       </div>
   </div>
