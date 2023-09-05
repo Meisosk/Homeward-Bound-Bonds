@@ -16,15 +16,15 @@
     ${nav}
     ${mobilenav}
     <div class="search-area">
-        <form action="/search" method="GET">
-        <input type="text" placeholder="Search by name">
-        <select>
+        <form action="/" method="GET">
+        <input name="name" type="text" placeholder="Search by name">
+        <select name="age">
             <option value="all">All Ages</option>
             <option value="young">Young</option>
             <option value="adult">Adult</option>
             <option value="senior">Senior</option>
         </select>
-        <select>
+        <select name="gender">
             <option value="all">All Genders</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
@@ -49,7 +49,7 @@
                         <a href="/profile/pet/11"><button class="card-button">Learn More</button></a>
                     </div>
                 </div>
-            </div>
+            </div> 
             
             <div class="card">
                 <img src="images/hilda.jpeg" alt="Hilda">
