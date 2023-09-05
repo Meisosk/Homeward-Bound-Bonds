@@ -43,8 +43,25 @@ app.use(morgan('tiny'))
 
 
 app.get("/", async (req, res) => {
+  const { name, age, gender } = req.query;
+  console.log("Query Parameters:");
+  console.log(req.query);
+  const filter = {};
+
+  if (name) {
+      filter.name = name;
+  }
+
+  if (age && age !== 'all') {
+      filter.age = age;
+  }
+
+  if (gender && gender !== 'all') {
+      filter.gender = gender;
+  }
   const pets = await Pets.findAll({
     attributes: ["name", "gender", "age", "id", "pics"],
+    where: filter
   });
   res.render("home", {
     locals: {
