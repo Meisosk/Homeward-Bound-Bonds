@@ -43,8 +43,25 @@ app.use(morgan('tiny'))
 
 
 app.get("/", async (req, res) => {
+  const { name, age, gender } = req.query;
+  console.log("Query Parameters:");
+  console.log(req.query);
+  const filter = {};
+
+  if (name) {
+      filter.name = name;
+  }
+
+  if (age && age !== 'all') {
+      filter.age = age;
+  }
+
+  if (gender && gender !== 'all') {
+      filter.gender = gender;
+  }
   const pets = await Pets.findAll({
     attributes: ["name", "gender", "age", "id", "pics"],
+    where: filter
   });
   res.render("home", {
     locals: {
@@ -177,6 +194,10 @@ app.post("/user/signin", async (req, res) => {
     }
   });
 
+  function titleCase(str) {
+    return str.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  }
+
   app.get("/profile/pet/:id", checkAuth, async (req, res) => {
     const { id } = req.params;
     const pet = await Pets.findOne({
@@ -184,6 +205,10 @@ app.post("/user/signin", async (req, res) => {
         id
       }
     });
+
+  pet.age = titleCase(pet.age);
+  pet.gender = titleCase(pet.gender);
+
     res.render("pet-profile", {
       locals: { 
         pet,    
