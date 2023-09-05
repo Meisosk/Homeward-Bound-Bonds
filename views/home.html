@@ -9,8 +9,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gluten:wght@300&display=swap" rel="stylesheet">
     <title>Pet Adoption</title>
+
 </head>
 <body>
+
     ${nav}
     ${mobilenav}
     <div class="search-area">
@@ -116,7 +118,9 @@
                         <div class="info-container">
                             <div class="card-name">
                                 <h3>${pet.name}</h3>
-                            <div class="card-gender">${pet.gender}</div>
+                            <div class="card-gender"> 
+                                <i class='${pet.gender === "male" ? "fa-solid fa-mars" : "fa-solid fa-venus" }'></i>  
+                            </div>
                             </div>
                             <div class="card-age">${pet.age}</div>
                         </div>
@@ -128,8 +132,12 @@
             `).join('')}
             
 
-
-
+<!-- <script>
+    const genderCard = document.querySelector(".card-gender")
+    function genderPopulation(gender){
+   console.log(gender)
+   }
+</script> -->
 </body>
 <script src="https://kit.fontawesome.com/8cee7d6611.js" crossorigin="anonymous"></script>
 </html>
