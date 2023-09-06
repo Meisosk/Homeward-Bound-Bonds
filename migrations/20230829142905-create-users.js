@@ -26,13 +26,6 @@ module.exports = {
         type: Sequelize.BOOLEAN,
         allowNull: false
       },
-      petId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'Pets',
-          key: 'id',     
-      }
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
