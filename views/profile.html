@@ -18,25 +18,29 @@
         </div>
         <div class="pending-adoptions">
             <h2>Pending Adoptions</h2>
-            <div class="pet-card">
-                <p><a class = "pendingPet" href="/">Miya</a></p>
-                <button  class ="cancel-button">Cancel This Pending Adoption</button>
-                <div id="warningModal" class="modal">
-                    <div class="modal-content">
+            ${pets.map(pet => `
+                <div class="pet-card">
+                    <p><a class = "pendingPet" href="/">${pet.name}</a></p>
+                    <button  class ="cancel-button">Cancel This Pending Adoption</button>
+                    <!-- <div class="modal-content">
                         <p>Are you sure you want to cancel this pending adoption?</p>
                         <button id="continueButton">Yes, cancel this pending adoption</button>
                         <button id="declineButton">No! Keep this adoption open</button>
                     </div>
+                    <div id="warningModal" class="modal"> -->
+                       
+                </div>
+                `).join('')}
             </div>
-            </div>
-            <div class="pet-card">
+                
+            <!-- <div class="pet-card">
                 <p><a class = "pendingPet" href="/">Kody</a></p>
                 <button class="cancel-button">Cancel This Pending Adoption</button>
             </div>
             <div class="pet-card">
                 <p><a class = "pendingPet" href="/">Miyo</a></p>
                 <button class ="cancel-button">Cancel This Pending Adoption</button>
-            </div>
+            </div> -->
         </div>
         <div class="user-actions">
             <h2>User Actions</h2>
