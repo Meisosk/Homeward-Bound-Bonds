@@ -18,7 +18,6 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     password: DataTypes.STRING,
     foster: DataTypes.BOOLEAN,
-    petId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Users',
