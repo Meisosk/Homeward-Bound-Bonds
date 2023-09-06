@@ -20,8 +20,10 @@
             <h2>Pending Adoptions</h2>
             ${pets.map(pet => `
                 <div class="pet-card">
-                    <p><a class = "pendingPet" href="/">${pet.name}</a></p>
-                    <button  class ="cancel-button">Cancel This Pending Adoption</button>
+                    <p><a class = "pendingPet" href="/profile/pet/${pet.id}">${pet.name}</a></p>
+                    <form id="deletePending" method="POST" action="/delete/pending/${pet.id}">
+                        <button  class ="cancel-button">Cancel This Pending Adoption</button>
+                    </form>
                     <!-- <div class="modal-content">
                         <p>Are you sure you want to cancel this pending adoption?</p>
                         <button id="continueButton">Yes, cancel this pending adoption</button>
@@ -32,16 +34,6 @@
                 </div>
                 `).join('')}
             </div>
-                
-            <!-- <div class="pet-card">
-                <p><a class = "pendingPet" href="/">Kody</a></p>
-                <button class="cancel-button">Cancel This Pending Adoption</button>
-            </div>
-            <div class="pet-card">
-                <p><a class = "pendingPet" href="/">Miyo</a></p>
-                <button class ="cancel-button">Cancel This Pending Adoption</button>
-            </div> -->
-        </div>
         <div class="user-actions">
             <h2>User Actions</h2>
             <div class="edit-email-form" id="edit-email-form" style="display: none;">
@@ -126,7 +118,7 @@ emailForm.addEventListener("submit", function (event) {
     });
 
 
-    const cancelButtons = document.querySelectorAll(".cancel-button");
+const cancelButtons = document.querySelectorAll(".cancel-button");
 const modal = document.getElementById("warningModal");
 const continueButton = document.getElementById("continueButton");
 const declineButton = document.getElementById("declineButton");
