@@ -241,8 +241,16 @@ body {
   }
 }
 /* one row */
-@media (max-width: 900px) {
+@media (max-width: 736px) {
   .card {
-    width: 75vw;
+    width: 350px;
   }
+
+  .card-container {
+    padding: 15px;
+  }
+}
+
+.card-info {
+  font-size: 28px;
 }
