@@ -219,7 +219,7 @@ app.post("/user/signin", async (req, res) => {
         id
       }
     });
-
+  pet.imageURL = `https://pet-images-dc.s3.amazonaws.com/${pet.pics}`;
   pet.age = titleCase(pet.age);
   pet.gender = titleCase(pet.gender);
 
