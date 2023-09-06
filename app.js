@@ -381,6 +381,31 @@ app.delete('/profile/user/:id', async (req, res) => {
   res.json(deletedUser);
 });
 
+app.post('/delete/pending/:petId', async (req, res) => {
+  try {
+      const { petId } = req.params;
+      const userId = req.session.user.id;
+
+      const pendingAdoption = await Pending.findOne({
+          where: {
+              petId,
+              userId,
+          },
+      });
+
+      if (!pendingAdoption) {
+          return res.status(404).send('Pending adoption not found.');
+      }
+
+      await pendingAdoption.destroy();
+
+      res.redirect('/profile/user/' + userId);
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Error canceling pending adoption.' });
+  }
+});
+
 app.post("/logout", async (req, res) => {
   try {
     req.session.destroy();
