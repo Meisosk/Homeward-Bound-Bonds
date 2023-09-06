@@ -87,10 +87,6 @@ app.get("/", async (req, res) => {
   });
 });
 
-
-
-
-
 app.post('/pet/new', upload.single('petPhoto'), async (req, res) => {
 
     const { name, weight, age, gender, type, bio } = req.body;
@@ -118,7 +114,7 @@ app.post('/pet/new', upload.single('petPhoto'), async (req, res) => {
         pics: fileName, 
       });
     
-    res.status(201).json(newPet);
+    res.redirect("/profile/pet/" + newPet.id);
     })
 
 

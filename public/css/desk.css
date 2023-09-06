@@ -77,6 +77,8 @@ body {
   flex: 1;
   margin: 20px;
   object-fit: cover;
+  max-height: 32vh;
+
 }
 
 .card img:hover {
