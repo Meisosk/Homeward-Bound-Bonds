@@ -322,40 +322,73 @@ function checkId(req, res, next) {
 
 
 
-app.get("/profile/user/:id", checkAuth, checkId, async (req, res) => {
-  const { id } = req.params;
-  const user = await Users.findOne({
-    where: {
-      id
+  app.get("/profile/user/:id", checkAuth, checkId, async (req, res) => {
+    const { id } = req.params;
+    const user = await Users.findOne({
+      where: {
+        id
+      }
+    });
+  
+    if (user.foster) {
+      const pendings = await Pending.findAll({
+        attributes: ["petId"],
+        where: {
+          userId: id
+        }
+      });
+      const petIds = pendings.map((pending) => pending.petId);
+      const pendingPets = await Pets.findAll({
+        where: {
+          id: petIds
+        }
+      });
+      const usersPets = await Pets.findAll({
+        where: {
+          ownerId: id
+        }
+      });
+  
+      res.render("foster-profile", {
+        locals: { 
+          usersPets,
+          pendingPets,
+          name: user.name,
+          email: user.email,
+        },
+        partials: {
+          nav: "partials/nav",
+          mobilenav: "partials/mobilenav"
+        }
+      });
+    } else {
+      const pendings = await Pending.findAll({
+        attributes: ["petId"],
+        where: {
+          userId: id
+        }
+      });
+      const petIds = pendings.map((pending) => pending.petId);
+      const pets = await Pets.findAll({
+        where: {
+          id: petIds
+        }
+      });
+  
+      res.render("profile", {
+        locals: { 
+          pets,
+          name: user.name,
+          email: user.email,
+        },
+        partials: {
+          nav: "partials/nav",
+          mobilenav: "partials/mobilenav"
+        }
+      });
     }
   });
-  const pendings = await Pending.findAll({
-    attributes: ["petId"],
-    where: {
-      userId: id
-    }
-  });
-const petIds = pendings.map((pending) => pending.petId);
-  const pets = await Pets.findAll({
-    where: {
-      id: petIds
-    }
-  });
-  res.render("profile", {
-    
-    locals: { 
-      pets,
-      name: user.name,
-      email: user.email,
-    
-    },
-    partials: {
-      nav: "partials/nav",
-      mobilenav: "partials/mobilenav"
-    }
 
-});
-})
 
 
 
