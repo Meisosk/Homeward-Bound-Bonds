@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.1451.0",
     "bcrypt": "^5.1.1",
     "connect-session-sequelize": "^7.1.7",
     "cookie-parser": "^1.4.6",
@@ -31,6 +32,11 @@
     "sequelize": "^6.32.1",
     "sequelize-cli": "^6.6.1",
     "session": "^0.1.0",
-    "sharp": "^0.32.5"
+    "sharp": "^0.32.5",
+    "uuid": "^9.0.0",
+    "v3": "^0.0.0"
+  },
+  "devDependencies": {
+    "serverless": "^3.34.0"
   }
 }

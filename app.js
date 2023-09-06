@@ -10,6 +10,8 @@ const { Users, Pets } = require("./models");
 const morgan = require('morgan')
 // const sharp = require('sharp');
 const path = require("path")
+const AWS = require('aws-sdk');
+const { v4: uuidv4 } = require('uuid');
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
@@ -75,6 +77,43 @@ app.get("/", async (req, res) => {
 });
 
 
+// app.post('/pet/new', upload.single('petPhoto'), async (req, res) => {
+//   try {
+//     // Get the pet information from the request body
+//     const { name, weight, age, gender, type, bio } = req.body;
+
+//     // req.file.buffer contains the uploaded image data
+//     if (!req.file) {
+//       return res.status(400).send('No image uploaded.');
+//     }
+
+//     const newPet = await Pets.create({
+//       name,
+//       weight,
+//       age,
+//       gender,
+//       type,
+//       bio,
+//       isAdopted: false,
+//       ownerId: req.session.user.id,
+//       pics: req.file.buffer, 
+//     });
+    
+//     res.redirect('/profile/pet/' + newPet.id); 
+//   } catch (error) {
+//     console.error(error);
+//     res.redirect('/error');
+//   }
+// });
+
+
+const s3 = new AWS.S3({
+  region: "us-east-1",
+  accessKeyId: 'AKIAWJXMZIYKRNDIVXUX',
+  secretAccessKey: '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',
+  signatureVersion: "v4"
+});
+
 app.post('/pet/new', upload.single('petPhoto'), async (req, res) => {
   try {
     // Get the pet information from the request body
@@ -85,6 +124,25 @@ app.post('/pet/new', upload.single('petPhoto'), async (req, res) => {
       return res.status(400).send('No image uploaded.');
     }
 
+    // Create a unique key (filename) for the S3 object, e.g., using a timestamp
+    const timestamp = Date.now().toString();
+    const fileName = `pets/${timestamp}-${uuidv4()}.jpg`;
+
+    // Upload the image to S3
+    const params = {
+      Bucket: 'pet-images-dc',
+      Key: fileName,
+      Body: req.file.buffer,
+    };
+
+    const s3Response = await s3.upload(params).promise();
+
+    // Check if the upload was successful
+    if (!s3Response.Location) {
+      return res.status(500).send('Error uploading image to S3.');
+    }
+
+    // Save the pet information and S3 image URL to your database
     const newPet = await Pets.create({
       name,
       weight,
@@ -94,17 +152,16 @@ app.post('/pet/new', upload.single('petPhoto'), async (req, res) => {
       bio,
       isAdopted: false,
       ownerId: req.session.user.id,
-      pics: req.file.buffer, 
+      pics: s3Response.Location, // Store the S3 image URL in your database
     });
-    
-    res.redirect('/profile/pet/' + newPet.id); 
+
+    // Send a success response
+    res.status(201).json(newPet);
   } catch (error) {
-    console.error(error);
-    res.redirect('/error');
+    console.error('Error:', error);
+    res.status(500).send('Internal Server Error');
   }
 });
-
-
 
 
 
