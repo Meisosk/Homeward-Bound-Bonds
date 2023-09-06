@@ -6,7 +6,7 @@ const helmet = require("helmet");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
 const multer = require("multer");
-const { Users, Pets } = require("./models");
+const { Users, Pets, Pending } = require("./models");
 const morgan = require('morgan')
 // const sharp = require('sharp');
 const path = require("path")
@@ -280,9 +280,17 @@ app.post("/user/signin", async (req, res) => {
 app.get("/contact/pet/:id", async (req, res) => {
   const { id } = req.params;
   
+  const pet = await Pets.findOne({
+    attributes: ["name"],
+    where: {
+      id,
+    },
+  });
+
   res.render("contact", {
     locals: {
-      petId: id
+      petId: id,
+      pet
     },
     partials: {
       nav: "partials/nav",
@@ -294,45 +302,50 @@ app.get("/contact/pet/:id", async (req, res) => {
 app.post("/contact/pet/:id", async (req, res) => {
   const { body } = req.body;
   const { id } = req.params;
-  const user = req.session.user.email;
+  const user = req.session.user;
 
-  const pet = await Pets.findOne({
-    attributes: ["ownerId"],
-    where: {
-      id,
-    },
-  });
-  const ownerId = pet.ownerId;
-  const owner = await Users.findOne({
-    attributes: ["email"],
-    where: {
-      id: ownerId,
-    },
-  });
-  const ownerEmail = owner.dataValues.email;
-
-  const API_KEY = 'key-a1cc41e70644d1d012b4d30abc369814';
-  const DOMAIN = 'sandboxd002fcec38864a7692e15ede0959674c.mailgun.org';
-  const formData = require('form-data');
-  const Mailgun = require('mailgun.js');
-  const mailgun = new Mailgun(formData);
-  const mg = mailgun.client({username: 'api', key:  API_KEY});
-  
-  mg.messages.create(DOMAIN, {
-    from: user,
-    to: ownerEmail,
-    subject: "I would like to adopt your pet!",
-    text: body,
-  })
-  .then(msg => {
-    console.log(msg)
-    res.redirect("/profile/user/" + req.session.user.id);
-  })
-    .catch((error) => {
-      console.error('Email sending error:', error);
-      res.redirect("/profile/user/" + req.session.user.id);
+  try {
+    const pet = await Pets.findOne({
+      attributes: ["ownerId"],
+      where: {
+        id,
+      },
     });
+    const ownerId = pet.ownerId;
+    const owner = await Users.findOne({
+      attributes: ["email"],
+      where: {
+        id: ownerId,
+      },
+    });
+    const ownerEmail = owner.dataValues.email;
+
+    await Pending.create({
+      petId: id,
+      userId: user.id,
+    });
+
+    const API_KEY = 'key-a1cc41e70644d1d012b4d30abc369814';
+    const DOMAIN = 'sandboxd002fcec38864a7692e15ede0959674c.mailgun.org';
+    const formData = require('form-data');
+    const Mailgun = require('mailgun.js');
+    const mailgun = new Mailgun(formData);
+    const mg = mailgun.client({ username: 'api', key: API_KEY });
+
+    await mg.messages.create(DOMAIN, {
+      from: user.email,
+      to: ownerEmail,
+      subject: "I would like to adopt your pet!",
+      text: body,
+    });
+
+    res.redirect("/profile/user/" + user.id);
+  } catch (error) {
+    console.error('Email sending error:', error);
+    res.redirect("/profile/user/" + user.id);
+  }
 });
+
 
 
 function checkAuth(req, res, next) {
@@ -363,11 +376,24 @@ app.get("/profile/user/:id", checkAuth, checkId, async (req, res) => {
       id
     }
   });
+  const pendings = await Pending.findAll({
+    attributes: ["petId"],
+    where: {
+      userId: id
+    }
+  });
+const petIds = pendings.map((pending) => pending.petId);
+  const pets = await Pets.findAll({
+    where: {
+      id: petIds
+    }
+  });
   res.render("profile", {
-    user,
+    
     locals: { 
+      pets,
       name: user.name,
-      email: user.email
+      email: user.email,
     
     },
     partials: {
