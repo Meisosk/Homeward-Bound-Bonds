@@ -1,6 +1,24 @@
 <nav class="mobilenav">
 <i id="left" class="fa-solid fa-bars fa-3x"></i>
  <img id="logo2" src="/images/petLogo.png" />
-<i id = "right" class="fa-solid fa-circle-user fa-3x"></i>
+<a  class = "right-btn" href=""><button style="background: transparent;
+    border: none !important;" class = "right-btn"><i id = "right" class="fa-solid fa-circle-user fa-4x"></i></button></a>
 </nav>
 
+<script>
+    const right = document.querySelector(".right-btn")
+    fetch("/issignedin")
+      .then(response => response.json())
+      .then(data => {
+        const isSignedIn = data.isSignedIn;
+        const userId = data.userId;
+
+        right.addEventListener("click", () => {
+          if (isSignedIn) {
+            right.href = "/profile/user/" + userId;
+          } else {
+            right.href = "/signin";
+          }
+        });
+      });
+</script>

@@ -4,7 +4,6 @@ body {
   padding: 0%;
 }
 
-
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -15,7 +14,6 @@ body {
   height: 60px;
   margin-bottom: auto;
 }
-
 
 .navbar-words {
   display: flex;
@@ -43,12 +41,10 @@ body {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-
 .search-area {
   text-align: center;
   padding: 20px;
 }
-
 
 .card-container {
   display: flex;
@@ -78,7 +74,6 @@ body {
   margin: 20px;
   object-fit: cover;
   max-height: 32vh;
-
 }
 
 .card img:hover {
@@ -102,7 +97,7 @@ body {
 .card-name {
   display: flex;
   border-radius: 16px;
-  align-items: flex-start; 
+  align-items: flex-start;
   flex-direction: column;
   font-family: "Gluten", cursive;
 }
@@ -168,25 +163,39 @@ body {
   margin-left: 18px;
 }
 
-#left, #right, .mobileSearch {
-    margin: 8px;
+#left,
+#right,
+.mobileSearch {
+  margin: 8px;
 }
 
 .mobilenav {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        background-color: #c8ab83;
-        color: black;
-      }
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #c8ab83;
+  color: black;
+}
 
- 
- #logo2 {
-    max-width: 100px;
-    max-height: 100px;
-    margin: 0;
-    border-radius: 50%;
- }     
+.right-btn:hover {
+  background: linear-gradient(
+    180deg,
+    #6db2ba 69.27%,
+    #eec584 99.99%,
+    #7078c9 100%
+  );
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  color: black;
+  text-decoration: none;
+  border-radius: 16px;
+}
+
+#logo2 {
+  max-width: 100px;
+  max-height: 100px;
+  margin: 0;
+  border-radius: 50%;
+}
 
 /* little screens */
 @media (max-width: 723px) {
@@ -208,35 +217,32 @@ body {
 
 /* big screens */
 @media (min-width: 723px) {
-    .mobilenav {
-      display: none;
-    }
-    
-    .navbar {
-        display: flex;
-      }
-
-      .search-area {
-        display: block;
-      }
-
-      .mobileSearch {
-        display: none;
-      }
+  .mobilenav {
+    display: none;
   }
+
+  .navbar {
+    display: flex;
+  }
+
+  .search-area {
+    display: block;
+  }
+
+  .mobileSearch {
+    display: none;
+  }
+}
 
 /* two rows */
 @media (max-width: 1500px) {
-  .card{
+  .card {
     width: 40vw;
   }
 }
 /* one row */
 @media (max-width: 900px) {
-  .card{
+  .card {
     width: 75vw;
   }
 }
-
-
-
