@@ -10,7 +10,7 @@ const { Users, Pets, Pending } = require("./models");
 const morgan = require('morgan')
 // const sharp = require('sharp');
 const path = require("path")
-const AWS = require('aws-sdk');
+const { S3Client, GetObjectCommand } = require("@aws-sdk/client-s3");
 const { v4: uuidv4 } = require('uuid');
 
 const storage = multer.memoryStorage();
