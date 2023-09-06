@@ -29,6 +29,13 @@ body {
     background-color: #c8ab83;
 }
 
+.outgoing-pets {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+    background-color: #c8ab83;
+}
+
 
 .pendingPet {
     text-decoration: none;
