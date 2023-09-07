@@ -1,24 +1,94 @@
-<nav class="mobilenav">
-<i id="left" class="fa-solid fa-bars fa-3x"></i>
- <img id="logo2" src="/images/petLogo.png" />
-<a  class = "right-btn" href=""><button style="background: transparent;
-    border: none !important;" class = "right-btn"><i id = "right" class="fa-solid fa-circle-user fa-4x"></i></button></a>
-</nav>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-<script>
-    const right = document.querySelector(".right-btn")
-    fetch("/issignedin")
-      .then(response => response.json())
-      .then(data => {
-        const isSignedIn = data.isSignedIn;
-        const userId = data.userId;
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+}
 
-        right.addEventListener("click", () => {
-          if (isSignedIn) {
-            right.href = "/profile/user/" + userId;
-          } else {
-            right.href = "/signin";
-          }
-        });
-      });
-</script>
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+  padding-bottom: 0px;
+
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+  </style>
+</head>
+<body>
+  <nav class="mobilenav">
+   
+  
+    <div class="dropdown">
+      <button class="dropbtn"> 
+         <i id="left" class="fa-solid fa-bars fa-3x"></i>
+      </button>
+      <div class="dropdown-content">
+        <a href="/">Adopt</a>
+        <a href="/rehome">Rehome</a>
+        <a href="/adopted">Recently Adopted</a>
+      </div>
+    </div> 
+  
+    <a href="/"><img id="logo" src="/images/petLogo.png"></a>
+  
+    <a  class = "profile-btn" href="/profile/user/1">
+      <button style="background: transparent; border: none !important;" class = "profile-btn">
+          <i class="fa-solid fa-circle-user fa-3x"></i>
+      </button>
+      </a>
+  </nav>
+</body>
+</html>
