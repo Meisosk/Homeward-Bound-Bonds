@@ -85,16 +85,15 @@ document.getElementById("petPhoto").addEventListener("change", function (event) 
 
 
 document.getElementById("petInfoForm").addEventListener("submit", async function (event) {
-  event.preventDefault(); // Prevent the default form submission behavior
+  event.preventDefault(); 
 
-  // Show the loading container
+
   const loadingContainer = document.getElementById("loading-container");
   loadingContainer.style.display = "block";
 
   const formData = new FormData(this);
 
   try {
-    // Use fetch to send the form data asynchronously
     const response = await fetch("/pet/new", {
       method: "POST",
       body: formData,
@@ -103,15 +102,13 @@ document.getElementById("petInfoForm").addEventListener("submit", async function
     if (response.ok) {
       const data = await response.json();
       const petId = data.petId;
-      window.location.href = "/profile/pet/" + petId; // Replace with the appropriate success page URL
+      window.location.href = "/profile/pet/" + petId;
     } else {
-      // Handle errors here, e.g., show an error message
       console.error("Form submission failed");
     }
   } catch (error) {
     console.error("An error occurred:", error);
   } finally {
-    // Hide the loading container, whether the request succeeded or failed
     loadingContainer.style.display = "none";
   }
 });
