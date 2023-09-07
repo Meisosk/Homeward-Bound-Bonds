@@ -3,13 +3,13 @@
     <div class="navbar-words">
         <a href="/">Adopt</a>
         <a href="/rehome">Rehome</a>
-        <a href="#">Recently Adopted</a>
-        <a  class = "profile-btn" href=""><button style="background: transparent;
+        <a href="/adopted">Recently Adopted</a>
+        <a  class = "profile-btn" href="/profile/user/" + req.session.user.id><button style="background: transparent;
             border: none !important;" class = "profile-btn"><i class="fa-solid fa-circle-user fa-3x"></i></button></a>
     </div>
 </nav>
 
-<script>
+<!-- <script>
     const profile = document.querySelector(".profile-btn")
     fetch("/issignedin")
       .then(response => response.json())
@@ -25,4 +25,4 @@
           }
         });
       });
-</script>
+</script> -->

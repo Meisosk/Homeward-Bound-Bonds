@@ -4,8 +4,56 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/css/desk.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gluten:wght@300&display=swap" rel="stylesheet">
+      
     <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    ${nav}
+    ${mobilenav}
+    <div class="search-area">
+        <form action="/" method="GET">
+        <input name="name" type="text" placeholder="Search by name">
+        <select name="age">
+            <option value="all">All Ages</option>
+            <option value="young">Young</option>
+            <option value="adult">Adult</option>
+            <option value="senior">Senior</option>
+        </select>
+        <select name="gender">
+            <option value="all">All Genders</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+        <input type="submit" value="Search">
+    </form>
+    </div>
+    <div class="mobileSearch"><i class="fa-solid fa-sliders fa-3x"></i></div>
+
+        <div class="card-container">
+
+            ${pets.map(pet => `
+                <div class="card">
+                    <img src="${pet.imageURL}" alt="${pet.name}">
+                    <div class="card-info">
+                        <div class="info-container">
+                            <div class="card-name">
+                                <h3>${pet.name}</h3>
+                                <div class="card-age">${pet.age}</div>
+                            </div>
+                            <div class="card-gender"> 
+                                <i class='${pet.gender === "male" ? "fa-solid fa-mars" : "fa-solid fa-venus" }'></i>  
+                            </div>
+                        </div>
+                        <div class="button">
+                            <a href="/profile/pet/${pet.id}" ><button class="card-button">Learn More</button></a>
+                        </div>
+                    </div>
+                </div>
+            `).join('')}
+  </body>
   <script src="https://kit.fontawesome.com/8cee7d6611.js" crossorigin="anonymous"></script>
 </html>
