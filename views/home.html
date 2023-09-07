@@ -38,7 +38,36 @@
         <input type="submit" value="Search">
     </form>
     </div>
-    <div class="mobileSearch"><i class="fa-solid fa-sliders fa-3x"></i></div>
+
+ <div class="dropdown">
+      <button class="dropbtn"> 
+        <i class="fa-solid fa-sliders fa-3x"></i>
+      </button>
+      <div class="dropdown-content">
+        <p>Filter by</p>
+        <form action="/" method="GET">
+            <input name="name" type="text" placeholder="Search by name">
+            <select name="age">
+                <option value="all">All Ages</option>
+                <option value="young">Young</option>
+                <option value="adult">Adult</option>
+                <option value="senior">Senior</option>
+            </select>
+            <select name="gender">
+                <option value="all">All Genders</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <select name="type">
+                <option value="all">All Types</option>
+                <option value="dog">Dog</option>
+                <option value="cat">Cat</option>
+                <option value="bird">Bird</option>
+            </select>
+            <input type="submit" value="Search">
+        </form>
+      </div>
+    </div> 
 
         <div class="card-container">
             ${pets.length === 0 ? '<p class = "noRes">No Results Matching Your Query</p>' :
