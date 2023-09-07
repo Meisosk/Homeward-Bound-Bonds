@@ -41,8 +41,8 @@
     <div class="mobileSearch"><i class="fa-solid fa-sliders fa-3x"></i></div>
 
         <div class="card-container">
-
-            ${pets.map(pet => `
+            ${pets.length === 0 ? '<p class = "noRes">No Results Matching Your Query</p>' :
+            pets.map(pet => `
                 <div class="card">
                     <img src="${pet.imageURL}" alt="${pet.name}">
                     <div class="card-info">
