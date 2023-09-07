@@ -82,6 +82,10 @@ body {
   transition: transform 0.2s, filter 0.2s;
 }
 
+.noRes {
+  font-size: larger;
+}
+
 .card-info {
   flex: 1;
   display: flex;
