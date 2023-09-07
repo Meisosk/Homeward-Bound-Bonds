@@ -14,6 +14,7 @@ const { S3Client, GetObjectCommand, PutObjectCommand } = require("@aws-sdk/clien
 const { v4: uuidv4 } = require('uuid');
 const AWS = require('aws-sdk')
 
+
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
@@ -42,12 +43,12 @@ store.sync()
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('tiny'))
-
+require('dotenv').config();
 
 const s3 = new AWS.S3({
-  region: "us-east-1",
-  accessKeyId: 'AKIAWJXMZIYK4UA7XCKQ',
-  secretAccessKey: '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',
+  region: process.env.AWS_REGION,
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
   signatureVersion: "v4"
 });
 
@@ -121,8 +122,7 @@ app.post('/pet/new', upload.single('petPhoto'), async (req, res) => {
         ownerId: req.session.user.id,
         pics: fileName, 
       });
-    
-    res.redirect("/profile/pet/" + newPet.id);
+      res.json({ petId: newPet.id }); 
     })
 
 
