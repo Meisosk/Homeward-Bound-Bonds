@@ -224,6 +224,9 @@ body {
   .mobilenav {
     display: none;
   }
+  .filter {
+    display: none;
+  }
 
   .navbar {
     display: flex;
@@ -231,6 +234,7 @@ body {
 
   .search-area {
     display: block;
+    padding-top: 100px;
   }
 
   .mobileSearch {
