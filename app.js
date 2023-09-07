@@ -127,32 +127,32 @@ app.post('/pet/new', upload.single('petPhoto'), async (req, res) => {
 
 
 //placeholder update route//
-app.put("/pet-profile/:id", async (req, res) => {
-  const petId = req.params.id;
-  const { name, pics, age, gender, weight, type, bio, isAdopted, ownerId } =
-    req.body;
+// app.put("/pet-profile/:id", async (req, res) => {
+//   const petId = req.params.id;
+//   const { name, pics, age, gender, weight, type, bio, isAdopted, ownerId } =
+//     req.body;
 
-  try {
-    const pet = await Pets.findByPk(petId);
+//   try {
+//     const pet = await Pets.findByPk(petId);
 
-    if (name) pet.name = name;
-    if (pics) pet.pics = pics;
-    if (age) pet.age = age;
-    if (gender) pet.gender = gender;
-    if (weight) pet.weight = weight;
-    // if (type) pet.type = type;
-    if (bio) pet.bio = bio;
-    if (isAdopted) pet.isAdopted = isAdopted;
-    if (ownerId) pet.ownerId = ownerId;
+//     if (name) pet.name = name;
+//     if (pics) pet.pics = pics;
+//     if (age) pet.age = age;
+//     if (gender) pet.gender = gender;
+//     if (weight) pet.weight = weight;
+//     // if (type) pet.type = type;
+//     if (bio) pet.bio = bio;
+//     if (isAdopted) pet.isAdopted = isAdopted;
+//     if (ownerId) pet.ownerId = ownerId;
 
-    await pet.save();
+//     await pet.save();
 
-    res.status(200).json(pet);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Error! Try again later" });
-  }
-});
+//     res.status(200).json(pet);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: "Error! Try again later" });
+//   }
+// });
 
 
 
@@ -237,7 +237,7 @@ app.post("/user/signin", async (req, res) => {
       }
   });
 });
-// http://localhost:3000/contact/pet/20
+
 app.get("/contact/pet/:id", async (req, res) => {
   const { id } = req.params;
   
@@ -328,14 +328,7 @@ function checkId(req, res, next) {
     }
   } 
 
-  // function isSignedIn (req, res, next) {
-  //   if(req.session.user){
-  //     next()
-  //   } else {
-  //     res.redirect("/signin")
-  //   }
-  // } 
-  
+
 
   app.get("/profile/user/:id", checkAuth, checkId,  async (req, res) => {
     const { id } = req.params;
