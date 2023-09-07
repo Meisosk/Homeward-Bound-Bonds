@@ -8,7 +8,7 @@ const passport = require("passport");
 const multer = require("multer");
 const { Users, Pets, Pending } = require("./models");
 const morgan = require('morgan')
-// const sharp = require('sharp');
+const sharp = require('sharp');
 const path = require("path")
 const { S3Client, GetObjectCommand, PutObjectCommand } = require("@aws-sdk/client-s3");
 const { v4: uuidv4 } = require('uuid');
@@ -53,9 +53,7 @@ const s3 = new AWS.S3({
 
 app.get("/", async (req, res) => {
   const { name, age, gender } = req.query;
-  console.log("Query Parameters:");
-  console.log(req.query);
-  const filter = {};
+  const filter = { isAdopted: false};
 
   if (name) {
       filter.name = name;
@@ -71,6 +69,7 @@ app.get("/", async (req, res) => {
   const pets = await Pets.findAll({
     attributes: ["name", "gender", "age", "id", "pics"],
     where: filter
+    
   });
 
   for (const pet of pets) {
@@ -93,6 +92,11 @@ app.post('/pet/new', upload.single('petPhoto'), async (req, res) => {
 
     const timestamp = Date.now().toString();
     const fileName = `pets/${timestamp}-${uuidv4()}.jpg`;
+
+    const resizedImage = await sharp(req.file.buffer)
+    .resize(1748, 1240)
+    .jpeg() 
+    .toBuffer();
 
     const params = {
       Bucket: 'pet-images-dc',
@@ -320,9 +324,16 @@ function checkId(req, res, next) {
     }
   } 
 
+  // function isSignedIn (req, res, next) {
+  //   if(req.session.user){
+  //     next()
+  //   } else {
+  //     res.redirect("/signin")
+  //   }
+  // } 
+  
 
-
-  app.get("/profile/user/:id", checkAuth, checkId, async (req, res) => {
+  app.get("/profile/user/:id", checkAuth, checkId,  async (req, res) => {
     const { id } = req.params;
     const user = await Users.findOne({
       where: {
@@ -345,7 +356,8 @@ function checkId(req, res, next) {
       });
       const usersPets = await Pets.findAll({
         where: {
-          ownerId: id
+          ownerId: id,
+          isAdopted: false
         }
       });
   
@@ -355,10 +367,6 @@ function checkId(req, res, next) {
           pendingPets,
           name: user.name,
           email: user.email,
-        },
-        partials: {
-          nav: "partials/nav",
-          mobilenav: "partials/mobilenav"
         }
       });
     } else {
@@ -380,10 +388,6 @@ function checkId(req, res, next) {
           pets,
           name: user.name,
           email: user.email,
-        },
-        partials: {
-          nav: "partials/nav",
-          mobilenav: "partials/mobilenav"
         }
       });
     }
@@ -392,7 +396,7 @@ function checkId(req, res, next) {
 
 
 
-app.patch('/profile/user/:id', async (req, res) => { 
+app.patch('/profile/user/:id',  async (req, res) => { 
   const userId = req.params.id;
   const { email } = req.body; 
   const user = await Users.findByPk(userId);
@@ -439,6 +443,66 @@ app.post('/delete/pending/:petId', async (req, res) => {
   }
 });
 
+app.post('/delete/all/:petId', async (req, res) => {
+  try {
+      const { petId } = req.params;
+      const userId = req.session.user.id;
+
+      const pendingAdoption = await Pending.findOne({
+          where: {
+              petId,
+              userId,
+          },
+      });
+
+      const pet = await Pets.findOne({
+        where: {
+            id: petId,
+            ownerId: userId,
+        },
+    });
+
+      if (pendingAdoption) {
+        await pendingAdoption.destroy();
+      }
+      await pet.destroy();
+
+      res.redirect('/profile/user/' + userId);
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Error canceling pending adoption.' });
+  }
+});
+
+app.post('/pet/adopted/:petId', async (req, res) => {
+  try {
+    const { petId } = req.params;
+    const userId = req.session.user.id;
+
+    const pendingAdoption = await Pending.findOne({
+        where: {
+            petId,
+            userId,
+        },
+    });
+
+    await Pets.update({ isAdopted: true }, {
+      where: {
+          id: petId,
+      },
+  });
+
+    if (pendingAdoption) {
+      await pendingAdoption.destroy();
+    }
+    res.redirect('/profile/user/' + userId);
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Error canceling pending adoption.' });
+  }
+})
+
+
 app.post("/logout", async (req, res) => {
   try {
     req.session.destroy();
@@ -451,26 +515,51 @@ app.post("/logout", async (req, res) => {
 });
 
 app.get("/rehome", checkAuth, (req, res) => {
-  res.render("re-home", {
+  if(req.session.user.foster){
+    res.render("re-home", {
+      partials: {
+        nav: "partials/nav",
+        mobilenav: "partials/mobilenav"
+      }
+    });
+  } else {
+    res.status(403).send("Only fosters can add pets. You need to be a foster to add a pet.");
+  }
+});
+
+app.get("/adopted", async (req, res) => {
+  const { name, age, gender } = req.query;
+  const filter = { isAdopted: true};
+
+  if (name) {
+      filter.name = name;
+  }
+
+  if (age && age !== 'all') {
+      filter.age = age;
+  }
+
+  if (gender && gender !== 'all') {
+      filter.gender = gender;
+  }
+  const pets = await Pets.findAll({
+    attributes: ["name", "gender", "age", "id", "pics"],
+    where: filter
+    
+  });
+
+  for (const pet of pets) {
+    pet.imageURL = `https://pet-images-dc.s3.amazonaws.com/${pet.pics}`;
+  }
+  res.render("recently-adopted", {
+    locals: {
+      pets
+    },
     partials: {
       nav: "partials/nav",
       mobilenav: "partials/mobilenav"
     }
   });
-});
-
-
-
-app.get("/adopted", (req, res) => {
-  res.render("recently-adopted");
-});
-
-app.get("/issignedin", (req, res) => {
-  const response = {
-    isSignedIn: req.session.user ? true : false,
-    userId: req.session.user ? req.session.user.id : null
-  };
-  res.json(response);
 });
 
 app.listen(port, () => {

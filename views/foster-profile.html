@@ -21,26 +21,25 @@
             ${pendingPets.map(pet => `
                 <div class="pet-card">
                     <p><a class = "pendingPet" href="/profile/pet/${pet.id}">${pet.name}</a></p>
-                    <form id="deletePending" method="POST" action="/delete/pending/${pet.id}">
+                    <form  method="POST" action="/delete/pending/${pet.id}">
                         <button  class ="cancel-button">Cancel This Pending Adoption</button>
                     </form>
-                    <!-- <div class="modal-content">
-                        <p>Are you sure you want to cancel this pending adoption?</p>
-                        <button id="continueButton">Yes, cancel this pending adoption</button>
-                        <button id="declineButton">No! Keep this adoption open</button>
-                    </div>
-                    <div id="warningModal" class="modal"> -->
+
                        
                 </div>
                 `).join('')}
         </div>
+
         <div class="outgoing-pets">
             <h2>Outgoing Pets</h2>
             ${usersPets.map(pet => `
                 <div class="pet-card">
                     <p><a class = "pendingPet" href="/profile/pet/${pet.id}">${pet.name}</a></p>
-                    <form id="deletePending" method="POST" action="/delete/pending/${pet.id}">
-                        <button  class ="cancel-button">Cancel This Pending Adoption</button>
+                    <form  method="POST" action="/delete/all/${pet.id}">
+                        <button  class ="cancel-button">Cancel This Outgoing Adoption</button>
+                    </form>
+                    <form  method="POST" action="/pet/adopted/${pet.id}">
+                        <button  class ="adopted-button">Animal has been adopted!</button>
                     </form>
                 </div>
                 `).join('')}
@@ -68,7 +67,12 @@
             </form>
         </div>
     </div>
-
+                    <!-- <div class="modal-content">
+                        <p>Are you sure you want to cancel this pending adoption?</p>
+                        <button id="continueButton">Yes, cancel this pending adoption</button>
+                        <button id="declineButton">No! Keep this adoption open</button>
+                    </div>
+                    <div id="warningModal" class="modal"> -->
 <script>
     function deleteProfile() {
       const userId =  getUserIdFromUrl()
