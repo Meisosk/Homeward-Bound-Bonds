@@ -4,60 +4,11 @@ body {
     padding: 0%;
   }
 
-#logo {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    margin-top: 100px;
-    margin-left: 18px;
-  }
-  
-  
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #c8ab83;
-  color: black;
-  padding: 10px 20px;
-  height: 60px;
-  margin-bottom: auto;
-}
-
-
-.navbar-words {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.navbar a {
-  color: black;
-  text-decoration: none;
-  padding: 10px;
-  border-radius: 16px;
-  font-family: "Gluten", cursive;
-}
-
-.navbar-words a:hover {
-  background: linear-gradient(
-    180deg,
-    #6db2ba 69.27%,
-    #eec584 99.99%,
-    #7078c9 100%
-  );
-  color: white;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-
   .profile-pic {
     max-width: 50vw;
     margin-top: 7rem;
     padding-right: 150px;
   }
-
 
   .name{
     margin: 0px;
@@ -138,64 +89,35 @@ h1 {
 }
 
 
-
-#left, #right, .mobileSearch {
-    margin: 8px;
+.loading-container {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 999;
 }
 
-.mobilenav {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        background-color: #c8ab83;
-        color: black;
-      }
-
-
- #logo2 {
-    max-width: 100px;
-    max-height: 100px;
-    margin: 0;
-    border-radius: 50%;
- }     
- 
-
-/* little screens */
-@media (max-width: 723px) {
-  .navbar {
-    display: none;
-  }
-
-  .mobilenav {
-    display: flex;
-  }
-
-  .search-area {
-    display: none;
-  }
-  .mobileSearch {
-    display: block;
-  }
+.loading-spinner {
+  border: 4px solid rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  border-top: 4px solid #3498db;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
 }
 
-/* big screens */
-@media (min-width: 723px) {
-    .mobilenav {
-      display: none;
-    }
-    
-    .navbar {
-        display: flex;
-      }
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
-      .search-area {
-        display: block;
-      }
-
-      .mobileSearch {
-        display: none;
-      }
-  }
 
 
   /* @media (max-width: 1100px) {
