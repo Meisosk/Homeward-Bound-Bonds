@@ -527,7 +527,7 @@ app.get("/rehome", checkAuth, (req, res) => {
       }
     });
   } else {
-    res.status(403).send("Only fosters can add pets. You need to be a foster to add a pet.");
+    res.render("not-foster")
   }
 });
 
