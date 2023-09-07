@@ -52,7 +52,7 @@ const s3 = new AWS.S3({
 });
 
 app.get("/", async (req, res) => {
-  const { name, age, gender } = req.query;
+  const { name, age, gender, type } = req.query;
   const filter = { isAdopted: false};
 
   if (name) {
@@ -66,6 +66,10 @@ app.get("/", async (req, res) => {
   if (gender && gender !== 'all') {
       filter.gender = gender;
   }
+
+  if (type && type !== 'all') {
+    filter.type = type;
+}
   const pets = await Pets.findAll({
     attributes: ["name", "gender", "age", "id", "pics"],
     where: filter
@@ -320,7 +324,7 @@ function checkId(req, res, next) {
     if(sessId == paramId){
       next()
     } else {
-      res.redirect("/")
+      res.redirect("/profile/user/" + sessId)
     }
   } 
 
