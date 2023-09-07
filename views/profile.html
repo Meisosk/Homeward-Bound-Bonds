@@ -24,12 +24,6 @@
                     <form id="deletePending" method="POST" action="/delete/pending/${pet.id}">
                         <button  class ="cancel-button">Cancel This Pending Adoption</button>
                     </form>
-                    <!-- <div class="modal-content">
-                        <p>Are you sure you want to cancel this pending adoption?</p>
-                        <button id="continueButton">Yes, cancel this pending adoption</button>
-                        <button id="declineButton">No! Keep this adoption open</button>
-                    </div>
-                    <div id="warningModal" class="modal"> -->
                        
                 </div>
                 `).join('')}
@@ -108,9 +102,7 @@ emailForm.addEventListener("submit", function (event) {
         })
         .then(response => response.json())
         .then(data => {
-            // Handle the response from the server
             console.log("Updated User:", data);
-            // You can also update the UI to reflect the changes if needed
         })
         .catch(error => {
             console.error("Error:", error);
