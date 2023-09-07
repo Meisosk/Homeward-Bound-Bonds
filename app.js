@@ -8,7 +8,7 @@ const passport = require("passport");
 const multer = require("multer");
 const { Users, Pets, Pending } = require("./models");
 const morgan = require('morgan')
-// const sharp = require('sharp');
+const sharp = require('sharp');
 const path = require("path")
 const { S3Client, GetObjectCommand, PutObjectCommand } = require("@aws-sdk/client-s3");
 const { v4: uuidv4 } = require('uuid');
@@ -93,6 +93,11 @@ app.post('/pet/new', upload.single('petPhoto'), async (req, res) => {
 
     const timestamp = Date.now().toString();
     const fileName = `pets/${timestamp}-${uuidv4()}.jpg`;
+
+    const resizedImage = await sharp(req.file.buffer)
+    .resize(1748, 1240)
+    .jpeg() 
+    .toBuffer();
 
     const params = {
       Bucket: 'pet-images-dc',
