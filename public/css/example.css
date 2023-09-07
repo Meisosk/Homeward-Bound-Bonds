@@ -113,7 +113,7 @@ input[type="radio"]:checked + label.selection-label {
     transition: background-color 0.3s, color 0.3s;
 }
 
-/* Apply styles when hovering over links */
+
 .nav-item a:hover {
     background: linear-gradient(180deg, rgba(45, 60, 149, 0.86) 69.27%, #212F85 99.99%, rgba(120, 139, 255, 0.00) 100%);
     color: white;
