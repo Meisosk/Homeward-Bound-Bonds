@@ -61,6 +61,12 @@ ${nav}
     </div>
   </div>
 
+  <!-- <div id="loading-container" class="loading-container" style= "display: none;">
+    <div class="loading-spinner"></div>
+    <p>Please Wait a Moment While Your Image Uploads</p>
+  </div> -->
+  
+
   <script>
 document.getElementById("petPhoto").addEventListener("change", function (event) {
   const uploadedImage = document.getElementById("uploadedImage");
@@ -76,6 +82,24 @@ document.getElementById("petPhoto").addEventListener("change", function (event) 
     reader.readAsDataURL(file);
   }
 });
+
+
+// const loadingContainer = document.getElementById('loading-container');
+// const petInfoForm = document.getElementById('petInfoForm');
+
+// petInfoForm.addEventListener('submit', async function (event) {
+//   event.preventDefault();
+//   loadingContainer.style.display = 'block'; 
+
+//     const formData = new FormData(this); 
+//     const response = await fetch('/pet/new', {
+//       method: 'POST',
+//       body: formData, 
+//     });
+//     const data = await response.json(); 
+//     window.location.href = '/profile/pet/' + formData.id;
+//   }
+// )
 
 </script>
   </body>
