@@ -94,7 +94,7 @@ app.post('/pet/new', upload.single('petPhoto'), async (req, res) => {
     const fileName = `pets/${timestamp}-${uuidv4()}.jpg`;
 
     const resizedImage = await sharp(req.file.buffer)
-    .resize(1748, 1240)
+    .resize(614, 874)
     .jpeg() 
     .toBuffer();
 
