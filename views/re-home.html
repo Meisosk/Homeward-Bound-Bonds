@@ -4,8 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/css/desk.css">
-    <link rel="stylesheet" href="/css/petProfile.css">
+    <link rel="stylesheet" href="/css/re-home.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gluten:wght@300&display=swap" rel="stylesheet">
@@ -15,7 +14,8 @@
 ${nav}
 ${mobilenav}
 
-  <div class="card-container profile">
+
+  <div class="container profile">
     <div>
         <h1>Submit Pet Information</h1>
         <form id="petInfoForm" method="POST" action="/pet/new" enctype="multipart/form-data">
@@ -23,7 +23,7 @@ ${mobilenav}
           <label for="petPhoto">Upload a Photo of Your Pet:</label>
           <input type="file" id="petPhoto" name="petPhoto" accept="image/*" required>
           <div class="image-preview">
-            <img id="uploadedImage" src="#" alt="Uploaded Pet Photo" style="max-width: 100%; height: auto;">
+            <img id="uploadedImage" src="#" alt="Uploaded Pet Photo" style="max-width: 300px; height: auto;">
           </div>
           <div>
       <h1>Pet Information</h1>

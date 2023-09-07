@@ -60,6 +60,94 @@
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+.mobilenav {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: #c8ab83;
+  color: black;
+}
+#logo2 {
+  max-width: 100px;
+  max-height: 100px;
+  margin: 0;
+  border-radius: 50%;
+}
+.profile-btn2:hover {
+  background: linear-gradient(
+    180deg,
+    #6db2ba 69.27%,
+    #eec584 99.99%,
+    #7078c9 100%
+  );
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  color: black;
+  text-decoration: none;
+  border-radius: 16px;
+}
+
+@media (max-width: 723px) {
+  .navbar {
+    display: none;
+  }
+
+  .mobilenav {
+    display: flex;
+  }
+
+  .search-area {
+    display: none;
+  }
+  .mobileSearch {
+    display: block;
+  }
+}
+
+/* big screens */
+@media (min-width: 723px) {
+  .mobilenav {
+    display: none;
+  }
+  .filter {
+    display: none;
+  }
+
+  .navbar {
+    display: flex;
+  }
+
+  .search-area {
+    display: block;
+    padding-top: 100px;
+  }
+
+  .mobileSearch {
+    display: none;
+  }
+}
+
+/* two rows */
+@media (max-width: 1500px) {
+  .card {
+    width: 40vw;
+  }
+}
+/* one row */
+@media (max-width: 736px) {
+  .card {
+    width: 350px;
+  }
+
+  .card-container {
+    padding: 15px;
+  }
+}
+
+.card-info {
+  font-size: 28px;
+}
+
   </style>
 </head>
 <body>
