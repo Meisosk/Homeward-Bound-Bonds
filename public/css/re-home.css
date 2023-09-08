@@ -5,7 +5,6 @@ body {
   }
 
   .container {
-    margin: 30px;
     margin-top: 100px;
     
   }
@@ -13,6 +12,49 @@ body {
   .containerProfile {
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: flex-start;
+    margin-top: 5rem;
   }
 
+ h1 {
+  text-align: center;
+}
+
+#uploadedImage {
+  max-width: 500px;
+  max-height: 500px;
+}
+ 
+
+@media screen and (max-width: 992px) {
+
+
+    .containerProfile {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    margin-bottom: 30px;}
+      
+}
+
+@media screen and (max-width: 480px) {
+  .left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70%;
+  }
+
+  .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 70%;
+  } 
+
+  #uploadedImage {
+    max-width: 250px;
+    max-height: 250px;
+  }
+}
