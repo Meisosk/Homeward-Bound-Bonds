@@ -17,7 +17,7 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 const app = express();
-const port = 3000;
+const PORT = process.env.DB_PORT || 3000;
 
 app.engine("html", es6);
 app.set("views", "views");
@@ -539,6 +539,6 @@ app.get("/adopted", async (req, res) => {
   });
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`server started on port ${PORT}`);
 });
