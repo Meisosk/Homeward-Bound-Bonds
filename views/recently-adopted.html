@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/desk.css">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gluten:wght@300&display=swap" rel="stylesheet">
-      
-    <title>Document</title>
-  </head>
-  <body>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gluten:wght@300&display=swap" rel="stylesheet">
+    <title>Pet Adoption</title>
+
+</head>
+<body>
+
     ${nav}
     ${mobilenav}
     <div class="search-area">
@@ -28,14 +29,49 @@
             <option value="male">Male</option>
             <option value="female">Female</option>
         </select>
+        <select name="type">
+            <option value="all">All Types</option>
+            <option value="dog">Dog</option>
+            <option value="cat">Cat</option>
+            <option value="bird">Bird</option>
+        </select>
         <input type="submit" value="Search">
     </form>
     </div>
-    <div class="mobileSearch"><i class="fa-solid fa-sliders fa-3x"></i></div>
+
+ <div class="dropdown filter">
+      <button class="dropbtn"> 
+        <i class="fa-solid fa-sliders fa-3x filter-icon"></i>
+      </button> 
+      <div class="dropdown-content">
+        <p>Filter by</p>
+        <form action="/" method="GET">
+            <input class = "filter-drop" name="name" type="text" placeholder="Search by name">
+            <select class = "filter-drop" name="age">
+                <option value="all">All Ages</option>
+                <option value="young">Young</option>
+                <option value="adult">Adult</option>
+                <option value="senior">Senior</option>
+            </select>
+            <select class = "filter-drop" name="gender">
+                <option value="all">All Genders</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            <select class = "filter-drop" name="type">
+                <option value="all">All Types</option>
+                <option value="dog">Dog</option>
+                <option value="cat">Cat</option>
+                <option value="bird">Bird</option>
+            </select>
+            <input class = "filter-drop filter-submit" type="submit" value="Search">
+        </form>
+      </div>
+    </div> 
 
         <div class="card-container">
-
-            ${pets.map(pet => `
+            ${pets.length === 0 ? '<p class = "noRes">No Results Matching Your Query</p>' :
+            pets.map(pet => `
                 <div class="card">
                     <img src="${pet.imageURL}" alt="${pet.name}">
                     <div class="card-info">
@@ -43,19 +79,21 @@
                             <div class="card-name">
                                 <h3>${pet.name}</h3>
                                 <div class="card-age">${pet.age}</div>
+                                <div class="small-gender">${pet.gender}</div>
                             </div>
                             <div class="card-gender"> 
                                 <i class='${pet.gender === "male" ? "fa-solid fa-mars" : "fa-solid fa-venus" }'></i>  
                             </div>
                         </div>
-                        ${!pet.isAdopted ? '<p class ="congrats">Congratulations on your new home! ❤️ 🐾</p>' : `
                         <div class="button">
                             <a href="/profile/pet/${pet.id}" ><button class="card-button">Learn More</button></a>
                         </div>
-                        `}
                     </div>
                 </div>
             `).join('')}
-  </body>
-  <script src="https://kit.fontawesome.com/8cee7d6611.js" crossorigin="anonymous"></script>
+            
+
+
+</body>
+<script src="https://kit.fontawesome.com/8cee7d6611.js" crossorigin="anonymous"></script>
 </html>
