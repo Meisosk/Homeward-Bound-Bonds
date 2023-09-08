@@ -1,0 +1,118 @@
+body {
+    background-color: #d9d4cd;
+    margin: 0%;
+    padding: 0%;
+  }
+
+
+.container {
+    max-width: 60%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color:none;
+    margin-top: 50px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin-bottom: 5px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"] {
+    padding: 10px;
+    margin-bottom: 1.5rem;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+
+.selection-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: .5rem;
+    gap: 10%;
+}
+
+
+
+.sign {
+    align-self: center;
+}
+
+.submit-button {
+    max-width: 100%;
+    background-color: #55868C;
+    color: white;
+    padding: 10px 300px;
+    border-radius: 5px;
+    align-self: center;
+}
+
+
+.submit-button:hover {
+    background-color: #5465FF;
+}
+
+
+.back-button {
+    color: black;
+    text-decoration: none;
+}
+
+.backCont {
+    margin-top: 3rem;
+    margin-left: 4rem;
+}
+
+.head {
+    align-self: flex-start;
+    padding-bottom: 40px;
+}
+
+#dog {
+    margin-left: 20px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    width: 22rem;
+
+}
+
+@media screen and (max-width: 992px) {
+    .submit-button { 
+        padding: 10px 100px;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    #dog {
+        width: 16rem;
+    }
+
+}
+
+@media screen and (max-width: 526px) {
+    #dog {
+        width: 12rem;
+    }
+
+    .container {
+        max-width: 90%;
+        margin-top: 15px;
+    }
+
+    .submit-button { 
+        padding: 10px 80px;
+    }
+
+    .backCont {
+        margin-left: 1rem;
+        margin-top: 1rem;
+    }
+}
