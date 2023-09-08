@@ -1,5 +1,7 @@
 body {
     background-image: url("/images/back.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover;
 
 }
@@ -190,3 +192,61 @@ p {
     display: flex;
     justify-content: space-evenly;
 }
+
+@media screen and (max-width: 1270px) {
+    body {
+        background-position: -165% center;
+        background-repeat: repeat;
+        background-image: url("/images/cutie.jpg");
+        
+    
+    }
+}
+
+@media screen and (max-width: 1122px) {
+    body {
+    background-position: initial;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    body {
+    background-position: initial;
+    }
+}
+
+@media screen and (max-width: 669px) {
+    body {
+    background-position: static;
+    background-repeat: no-repeat;
+    background-image: url('/images/frame.jpg');
+    }
+
+
+    .go-home-button, .edit-button {
+        font-size: small;
+        padding-left: 1px 1px;
+        padding-right: 1px 1px;
+        margin: 2px;
+    }
+
+    .profile-container {
+        display: flex;
+        justify-content: center;
+        max-width: 100%;
+        margin-top: 0;
+
+    }
+}
+
+@media screen and (max-width: 450px) {
+.profile-container {
+    max-width: 75%
+}
+}
+
+@media screen and (max-width: 345px) {
+    .profile-container {
+        max-width: 65%
+    }
+    }
