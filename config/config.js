@@ -8,6 +8,7 @@ module.exports = {
             password: process.env.C_PASS,
             database: process.env.C_DATABASE,
             dialect: "postgres",
+            port: process.env.DB_PORT,
             dialectOptions: {
               ssl: {
                 require: true, 
@@ -26,6 +27,7 @@ module.exports = {
           password: process.env.C_PASS,
           database: process.env.C_DATABASE,
           host: process.env.C_HOST,
+          port: process.env.DB_PORT,
           dialect: "postgres"
          
         }}
