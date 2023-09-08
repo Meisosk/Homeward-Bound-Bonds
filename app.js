@@ -267,11 +267,13 @@ app.post("/contact/pet/:id", async (req, res) => {
 
   try {
     const pet = await Pets.findOne({
-      attributes: ["ownerId"],
+      attributes: ["ownerId", "name"],
       where: {
         id,
       },
     });
+    const petName = pet.name
+    console.log(pet)
     const ownerId = pet.ownerId;
     const owner = await Users.findOne({
       attributes: ["email"],
@@ -296,7 +298,7 @@ app.post("/contact/pet/:id", async (req, res) => {
     await mg.messages.create(DOMAIN, {
       from: user.email,
       to: ownerEmail,
-      subject: "I would like to adopt your pet!",
+      subject: "I would like to adopt your pet " + petName + "!",
       text: body,
     });
 
