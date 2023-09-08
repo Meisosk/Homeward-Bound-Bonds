@@ -42,7 +42,7 @@ To use this app, follow the steps above from Installation and simply view in liv
 - HTML
 - CSS
 - JavaScript
-- SQL
+- PostgreSQL
 - [Sequelize](https://sequelize.org/)
 - [Express.js](https://expressjs.com/)
 - [Express ES6 Template Engine](https://www.npmjs.com/package/express-es6-template-engine)
