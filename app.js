@@ -10,6 +10,7 @@ const sharp = require('sharp');
 const { S3Client, GetObjectCommand, PutObjectCommand } = require("@aws-sdk/client-s3");
 const { v4: uuidv4 } = require('uuid');
 const AWS = require('aws-sdk')
+const config = JSON.parse(process.env.CONFIG_JSON);
 
 
 const storage = multer.memoryStorage();
