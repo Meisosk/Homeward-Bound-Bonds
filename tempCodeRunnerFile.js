@@ -408,9 +408,11 @@ app.patch('/profile/user/email/:id',  async (req, res) => {
     if (existingUser) {
       return res.status(400).json({ error: 'Email already exists in the database' });
     } else {
+      console.log("EMAIL REASIGNMENT")
       user.email = email;
       await user.save();
-      res.json({ success: true });
+      console.log(" BEFORE REDIRECT")
+      res.redirect("/")
     }
   }
 });

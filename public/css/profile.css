@@ -185,3 +185,8 @@ p {
     background-color: #48f148;
     transform: scale(1.05);
 }
+
+.brown-btns{
+    display: flex;
+    justify-content: space-evenly;
+}
