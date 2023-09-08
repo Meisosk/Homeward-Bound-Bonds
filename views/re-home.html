@@ -11,21 +11,21 @@
     <title>Pet Profile</title>
   </head>
   <body>
+
 ${nav}
 ${mobilenav}
 
-
-  <div class="container profile">
-    <div>
+  <div class="containerProfile">
+    <div class = "left">
         <h1>Submit Pet Information</h1>
         <form id="petInfoForm" method="POST" action="/pet/new" enctype="multipart/form-data">
-          <!-- Pet Photo Input -->
           <label for="petPhoto">Upload a Photo of Your Pet:</label>
           <input type="file" id="petPhoto" name="petPhoto" accept="image/*" required>
           <div class="image-preview">
-            <img id="uploadedImage" src="#" alt="Uploaded Pet Photo" style="max-width: 300px; height: auto;">
+            <img id="uploadedImage" src="#" alt="Uploaded Pet Photo" style="max-width: 500px; max-height: 500px;">
           </div>
-          <div>
+        </div>
+          <div class = "right">
       <h1>Pet Information</h1>
         <label for="petName"></label>
         <input type="text" id="petName" name="name" required placeholder="Name of Pet"><br><br>
@@ -43,7 +43,6 @@ ${mobilenav}
         <select id="petGender" name="gender">
           <option value="male">Male</option>
           <option value="female">Female</option>
-          <option value="unknown">Unknown</option>
         </select><br><br>
         <label for="petType">Type:</label>
         <select id="petType" name="type">
@@ -58,7 +57,8 @@ ${mobilenav}
 
         <button type="submit">Submit Pet Information</button>
       </form>
-    </div>
+    
+  </div>
   </div>
 
   <div id="loading-container" class="loading-container" style= "display: none;">
