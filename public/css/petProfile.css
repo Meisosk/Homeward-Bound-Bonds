@@ -5,9 +5,10 @@ body {
   }
 
   .profile-pic {
-    max-width: 50vw;
+    max-width: 35vw;
     margin-top: 7rem;
-    padding-right: 150px;
+    /* padding-right: 150px; */
+    max-height: 55vh;
   }
 
   .name{
@@ -15,15 +16,15 @@ body {
   }
 
 .bio{
-    font-size: 36px;
+    font-size: 2vw;
     align-self: flex-start;
 }
 .info{
     align-self: flex-start;
     text-align: center;
     margin-top: 7rem;
-    padding-right: 50px;
-    max-width: 750px;
+    /* padding-right: 50px; */
+    max-width: 40vw;
  
 }
 
@@ -39,7 +40,8 @@ h1 {
 
 .pic-and-bio{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    padding: 10px;
 }
 
 .info-adopt{
@@ -74,7 +76,7 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-right: 6vw;
+    /* padding-right: 6vw; */
 }
 
 .card-button {
@@ -84,7 +86,7 @@ h1 {
     background-color: #55868C;
     border: none;
     border-radius: 45px;
-    margin-left: 15rem;
+    /* margin-left: 15rem; */
     margin-bottom: 10px;
 }
 
