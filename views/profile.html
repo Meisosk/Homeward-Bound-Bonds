@@ -39,10 +39,10 @@
                     <button type="button" onclick="cancelEditEmail()">Cancel</button>
                 </form>
             </div>
-            <button class="edit-button" id="edit-email-button" onclick="showEditEmailForm()">Edit My Email Address</button>
-            
-
-            <a href="/"><button class="go-home-button">Go to Home Page</button></a>
+            <div class="brown-btns">
+                <button class="edit-button" id="edit-email-button" onclick="showEditEmailForm()">Edit My Email Address</button>
+                <a href="/"><button class="go-home-button">Go to Home Page</button></a>
+            </div>
             <form action="/logout" method="POST">
                 <button class="logout-button">Log Out</button>
             </form>
@@ -82,6 +82,18 @@
     emailInfo.style.display = 'none';
     editEmailForm.style.display = 'block';
 }
+
+
+function cancelEditEmail() {
+    const editEmailForm = document.getElementById('edit-email-form');
+    const editEmailButton = document.getElementById('edit-email-button');
+    const emailInfo = document.querySelector('.profile-info p');
+
+    editEmailButton.style.display = 'block';
+    emailInfo.style.display = 'block';
+    editEmailForm.style.display = 'none';
+}
+
 
 
 const emailForm = document.getElementById("email-form");
