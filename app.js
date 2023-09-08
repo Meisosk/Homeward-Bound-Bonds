@@ -2,14 +2,11 @@ const express = require("express");
 const es6 = require("express-es6-template-engine");
 const Sequelize = require("sequelize");
 const session = require("express-session");
-const helmet = require("helmet");
 const bcrypt = require("bcrypt");
-const passport = require("passport");
 const multer = require("multer");
 const { Users, Pets, Pending } = require("./models");
 const morgan = require('morgan')
 const sharp = require('sharp');
-const path = require("path")
 const { S3Client, GetObjectCommand, PutObjectCommand } = require("@aws-sdk/client-s3");
 const { v4: uuidv4 } = require('uuid');
 const AWS = require('aws-sdk')
@@ -124,38 +121,6 @@ app.post('/pet/new', upload.single('petPhoto'), async (req, res) => {
       });
       res.json({ petId: newPet.id }); 
     })
-
-
-//placeholder update route//
-// app.put("/pet-profile/:id", async (req, res) => {
-//   const petId = req.params.id;
-//   const { name, pics, age, gender, weight, type, bio, isAdopted, ownerId } =
-//     req.body;
-
-//   try {
-//     const pet = await Pets.findByPk(petId);
-
-//     if (name) pet.name = name;
-//     if (pics) pet.pics = pics;
-//     if (age) pet.age = age;
-//     if (gender) pet.gender = gender;
-//     if (weight) pet.weight = weight;
-//     // if (type) pet.type = type;
-//     if (bio) pet.bio = bio;
-//     if (isAdopted) pet.isAdopted = isAdopted;
-//     if (ownerId) pet.ownerId = ownerId;
-
-//     await pet.save();
-
-//     res.status(200).json(pet);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: "Error! Try again later" });
-//   }
-// });
-
-
-
 
 app.get("/signup", (req, res) => {
   res.render("sign-up");
@@ -288,8 +253,8 @@ app.post("/contact/pet/:id", async (req, res) => {
       userId: user.id,
     });
 
-    const API_KEY = 'key-a1cc41e70644d1d012b4d30abc369814';
-    const DOMAIN = 'sandboxd002fcec38864a7692e15ede0959674c.mailgun.org';
+    const API_KEY = process.env.MAIL_KEY;
+    const DOMAIN = process.env.MAIL_DOMAIN;
     const formData = require('form-data');
     const Mailgun = require('mailgun.js');
     const mailgun = new Mailgun(formData);
