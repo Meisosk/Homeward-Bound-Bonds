@@ -1,6 +1,6 @@
 const express = require("express");
 const es6 = require("express-es6-template-engine");
-const Sequelize = require("sequelize");
+const  Sequelize  = require("sequelize");
 const session = require("express-session");
 const bcrypt = require("bcrypt");
 const multer = require("multer");
@@ -10,7 +10,7 @@ const sharp = require('sharp');
 const { S3Client, GetObjectCommand, PutObjectCommand } = require("@aws-sdk/client-s3");
 const { v4: uuidv4 } = require('uuid');
 const AWS = require('aws-sdk')
-const config = JSON.parse(process.env.CONFIG_JSON);
+
 
 
 const storage = multer.memoryStorage();
