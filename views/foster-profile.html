@@ -55,16 +55,18 @@
                     <button type="button" onclick="cancelEditEmail()">Cancel</button>
                 </form>
             </div>
-            <button class="edit-button" id="edit-email-button" onclick="showEditEmailForm()">Edit My Email Address</button>
-            
+            <div class="brown-btns">
+                <button class="edit-button" id="edit-email-button" onclick="showEditEmailForm()">Edit My Email Address</button>
+                <a href="/"><button class="go-home-button">Go to Home Page</button></a>
 
-            <a href="/"><button class="go-home-button">Go to Home Page</button></a>
+            </div>
+
             <form action="/logout" method="POST">
                 <button class="logout-button">Log Out</button>
             </form>
-            <form id="deleteForm" method="POST">
-                <button class="delete-button" onclick="deleteProfile()">Delete Account</button>
-            </form>
+        
+            <button class="delete-button" onclick="deleteProfile()">Delete Account</button>
+      
         </div>
     </div>
                 
@@ -99,6 +101,16 @@
     editEmailForm.style.display = 'block';
 }
 
+function cancelEditEmail() {
+    const editEmailForm = document.getElementById('edit-email-form');
+    const editEmailButton = document.getElementById('edit-email-button');
+    const emailInfo = document.querySelector('.profile-info p');
+
+    editEmailButton.style.display = 'block';
+    emailInfo.style.display = 'block';
+    editEmailForm.style.display = 'none';
+}
+
 
 const emailForm = document.getElementById("email-form");
 emailForm.addEventListener("submit", function (event) {
@@ -107,7 +119,7 @@ emailForm.addEventListener("submit", function (event) {
         const formData = new FormData(emailForm);
         const newEmail = formData.get("new-email");
         console.log("Email:", newEmail);
-        fetch("/profile/user/" + userId, {
+        fetch("/profile/user/email/" + userId, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -118,9 +130,12 @@ emailForm.addEventListener("submit", function (event) {
         })
         .then(response => response.json())
         .then(data => {
-            // Handle the response from the server
             console.log("Updated User:", data);
-            // You can also update the UI to reflect the changes if needed
+            if (data.success) {
+            window.location.href = "/profile/user/" + userId;
+            } else {
+            console.error("Email update failed");
+            }
         })
         .catch(error => {
             console.error("Error:", error);
