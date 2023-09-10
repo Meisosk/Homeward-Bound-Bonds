@@ -85,9 +85,10 @@
                                 <i class='${pet.gender === "male" ? "fa-solid fa-mars" : "fa-solid fa-venus" }'></i>  
                             </div>
                         </div>
+                        ${!pet.isAdopted ? '' : `
                         <div class="button">
                             <a href="/profile/pet/${pet.id}" ><button class="card-button">Learn More</button></a>
-                        </div>
+                        </div>`}
                     </div>
                 </div>
             `).join('')}
