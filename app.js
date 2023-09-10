@@ -458,8 +458,7 @@ app.post('/pet/adopted/:petId', async (req, res) => {
 
     const pendingAdoption = await Pending.findOne({
         where: {
-            petId,
-            userId,
+            petId
         },
     });
 
@@ -538,6 +537,11 @@ app.get("/adopted", async (req, res) => {
     }
   });
 });
+
+app.use((req, res, next) => {
+  res.status(404).send('404 - Page Not Found');
+});
+
 
 app.listen(PORT, () => {
   console.log(`server started on port ${PORT}`);
