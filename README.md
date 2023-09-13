@@ -10,7 +10,7 @@ Welcome to Pet Nook! This website connects pet lovers with adorable animals in n
 
 ### You can watch a walk-through of this app here
 
-(add vid link here)
+https://watch.screencastify.com/v/bKiOdzfBDjnbqQRO4U4g
 
 ## Table of Contents
 
@@ -82,4 +82,3 @@ If you have any questions regarding this app, feel free to contact us:
 - isbellaleytys@gmail.com
 - meisosk@gmail.com
 
-### This project was deployed at: LINK HERE
